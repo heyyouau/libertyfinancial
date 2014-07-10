@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberty.Data", "Liberty.Data\Liberty.Data.csproj", "{F6CE59D9-9FEF-4588-9045-F0A5D5A28633}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{47F55F69-3ECA-42E2-BB9C-A8D613103018}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibertyFinanical.Web", "LibertyFinanical.Web\LibertyFinanical.Web.csproj", "{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberty.Repository.Interfaces", "Liberty.Repository.Interface\Liberty.Repository.Interfaces.csproj", "{940250C5-906B-4DCD-8472-B0A4EAF3C29B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Liberty.Lib", "Liberty.Lib\Liberty.Lib.csproj", "{E15CE9C8-A578-4AC4-A9D8-4B57C3356EB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F6CE59D9-9FEF-4588-9045-F0A5D5A28633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6CE59D9-9FEF-4588-9045-F0A5D5A28633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6CE59D9-9FEF-4588-9045-F0A5D5A28633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6CE59D9-9FEF-4588-9045-F0A5D5A28633}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{940250C5-906B-4DCD-8472-B0A4EAF3C29B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{940250C5-906B-4DCD-8472-B0A4EAF3C29B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{940250C5-906B-4DCD-8472-B0A4EAF3C29B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{940250C5-906B-4DCD-8472-B0A4EAF3C29B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15CE9C8-A578-4AC4-A9D8-4B57C3356EB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15CE9C8-A578-4AC4-A9D8-4B57C3356EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15CE9C8-A578-4AC4-A9D8-4B57C3356EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15CE9C8-A578-4AC4-A9D8-4B57C3356EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
