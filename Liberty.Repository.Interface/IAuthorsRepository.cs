@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Liberty.Repository.Interface
 {
-    public interface IAuthorRepository
+    public interface IAuthorsRepository
     {
-        IQueryable<Author> GetAuthors();
         Author GetAuthor(int authorId);
         Author GetAuthor(string firstname, string lastname);
         Author SaveAuthor(Author author);
+
+        List<Author> GetAuthors(IAuthorSearchParams searchTerms);
     }
 }

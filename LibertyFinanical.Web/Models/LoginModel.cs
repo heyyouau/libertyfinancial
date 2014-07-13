@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Liberty.Repository.Interface;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace LibertyFinanical.Web.Models
 {
-      public class LoginModel
+    public class LoginModel : ILogInModel
     {
         [Required]
         [Display(Name = "User name")]

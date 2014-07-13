@@ -12,6 +12,8 @@ namespace LibertyFinanical.Web.App_Start
     using Ninject.Web.Common;
     using Liberty.Data.Interfaces;
     using Liberty.Data;
+    using Liberty.Repository.Interface;
+    using Liberty.Lib;
 
     public static class NinjectWebCommon 
     {
@@ -64,6 +66,9 @@ namespace LibertyFinanical.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IDataContext>().To<DomainContext>().InSingletonScope();
+            kernel.Bind<IAuthorsRepository>().To<AuthorsRepository>().InSingletonScope();
+            kernel.Bind<ISessionContext>().To<SessionContext>().InSingletonScope();
+            kernel.Bind<IMemberRepository>().To<MemberRepository>().InSingletonScope();
         }        
     }
 }

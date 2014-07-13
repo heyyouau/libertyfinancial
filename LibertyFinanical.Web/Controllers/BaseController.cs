@@ -1,4 +1,5 @@
 ﻿using Liberty.Data.Interfaces;
+using Liberty.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,22 @@ namespace LibertyFinanical.Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected IDataContext _dataContext;
+        protected ISessionContext _sessionContext;
+        private IDataContext _dataContext;
 
-        public BaseController(IDataContext context)
+
+        protected override void OnResultExecuted(ResultExecutedContext filterContext)
         {
-            _dataContext = context;
+            _dataContext.SaveChanges();
+            base.OnResultExecuted(filterContext);
+        }
+        
+
+        public BaseController(IDataContext dataContext, ISessionContext sessionContext)
+        {
+            _sessionContext = sessionContext;
+            _dataContext = dataContext;
+
         }
 
     }

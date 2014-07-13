@@ -40,6 +40,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,8 +48,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAuthorRepository.cs" />
+    <Compile Include="IAuthorSearchParams.cs" />
+    <Compile Include="IAuthorsRepository.cs" />
     <Compile Include="IBorrowerRepository.cs" />
+    <Compile Include="ILogInModel.cs" />
+    <Compile Include="IMemberRepository.cs" />
+    <Compile Include="IMemberSearchTerms.cs" />
+    <Compile Include="IPublicationRepository.cs" />
+    <Compile Include="IPublicationSearchParams.cs" />
+    <Compile Include="ISessionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

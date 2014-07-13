@@ -1,4 +1,7 @@
 ﻿using Liberty.Data;
+using Liberty.Data.Interfaces;
+using Liberty.Repository.Interface;
+using LibertyFinanical.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,21 +11,32 @@ using System.Web.Mvc;
 namespace LibertyFinanical.Web.Controllers
 {
     [Authorize]
-    public class AuthorsController : Controller
+    public class AuthorsController : BaseController
     {
+
+        private IAuthorsRepository _authorsRepository;
+
+        public AuthorsController(IAuthorsRepository authorsRepostory, IDataContext dataContext, ISessionContext context)
+            : base(dataContext, context)
+        {
+            _authorsRepository = authorsRepostory;
+        }
+
 
         public ActionResult Index()
         {
-            return View();
+            return View(new AuthorSearchParams());
         }
 
         //add new authors
         //find authors
         //edit authors
 
-        public ActionResult _ajaxAuthorSearch(Author author)
+        public ActionResult _ajaxAuthorSearch(AuthorSearchParams searchTerms)
         {
-            return PartialView("DisplayTemplates/Authors", new List<Author>());
+
+            var authors = _authorsRepository.GetAuthors(searchTerms);
+            return PartialView("DisplayTemplates/Authors", _authorsRepository.GetAuthors(searchTerms));
         }
 
         [HttpGet]
@@ -35,7 +49,14 @@ namespace LibertyFinanical.Web.Controllers
         [HttpPost]
         public ActionResult _ajaxSaveAuthor(Author author)
         {
-            return PartialView("EditTemplates/Author", new Author());
+            if (ModelState.IsValid)
+            {
+                var a = _authorsRepository.SaveAuthor(author);
+                return View("Index", new AuthorSearchParams(a));
+            }
+            else
+                return View("Index", new AuthorSearchParams());
+            
         }
     }
 }

@@ -26,11 +26,22 @@ namespace Liberty.Data.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=|DataDirectory|\\Liberty.Data.Store.m" +
-            "df;Integrated Security=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=.\\..\\LibertyFinanical.Web\\app_data\\L" +
+            "iberty.Data.Store.mdf;Integrated Security=True")]
         public string Liberty_Data_StoreConnectionString {
             get {
                 return ((string)(this["Liberty_Data_StoreConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\v11.0;AttachDbFilename=C:\\dev\\Repos\\libertyfinancial\\Libert" +
+            "yFinanical.Web\\App_Data\\Liberty.Data.Store.mdf;Integrated Security=True")]
+        public string Liberty_Data_StoreConnectionString1 {
+            get {
+                return ((string)(this["Liberty_Data_StoreConnectionString1"]));
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Liberty.Data.Interfaces;
+using Liberty.Repository.Interface;
 using LibertyFinanical.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -7,10 +8,11 @@ using System.Web.Mvc;
 
 namespace LibertyFinanical.Web.Controllers
 {
-    public class AccountController : Controller//: BaseController
+    public class AccountController : BaseController
     {
 
-        public AccountController()
+        public AccountController(IDataContext dataContext, ISessionContext context)
+            : base(dataContext, context)
         {
 
         }
@@ -30,29 +32,24 @@ namespace LibertyFinanical.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginModel model, string returnUrl)
+        public ActionResult Login(ILogInModel model, string returnUrl)
         {
            //if this was a real application, we would check the database here 
            //for the purposes of this application, if you enter then name john and password wayne, you will get 
            //in as an administrator
-            if (model.UserName == "john" && model.Password == "wayne")
+            var errorMessage = string.Empty;
+
+            if (_sessionContext.LogIn(model, ref errorMessage ))
             {
                 System.Web.Security.FormsAuthentication.SetAuthCookie(model.UserName, true);
                 if (Url.IsLocalUrl(returnUrl))
-                {
-                    //if (returnUrl == "/")
-                    //    return RedirectToAction("Index", "Home");
-                    //else
-                        return Redirect(returnUrl);
-                }
+                    return Redirect(returnUrl);
                 else // keep it safe from phishers!
-                {
                     return RedirectToAction("Index", "Home");
-                }
             }
             else
             {
-                ModelState.AddModelError("", "The user name or password provided is incorrect.");
+                ModelState.AddModelError("", errorMessage);
                 return View(model);
             }
             

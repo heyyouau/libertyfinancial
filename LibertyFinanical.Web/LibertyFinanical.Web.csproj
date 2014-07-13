@@ -149,17 +149,24 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PublicationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\MemberSearchTerms.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="App_Data\Liberty.Data.Store.mdf" />
+    <Content Include="App_Data\Liberty.Data.Store_log.ldf">
+      <DependentUpon>Liberty.Data.Store.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -198,9 +205,11 @@
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Authors\DisplayTemplates\Authors.cshtml" />
     <Content Include="Views\Authors\EditTemplates\Author.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="Views\Members\DisplayTemplates\" />
+    <Folder Include="Views\Members\EditTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -209,6 +218,14 @@
     <ProjectReference Include="..\Liberty.Data\Liberty.Data.csproj">
       <Project>{f6ce59d9-9fef-4588-9045-f0a5d5a28633}</Project>
       <Name>Liberty.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liberty.Lib\Liberty.Lib.csproj">
+      <Project>{e15ce9c8-a578-4ac4-a9d8-4b57c3356eb8}</Project>
+      <Name>Liberty.Lib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Liberty.Repository.Interface\Liberty.Repository.Interfaces.csproj">
+      <Project>{940250c5-906b-4dcd-8472-b0a4eaf3c29b}</Project>
+      <Name>Liberty.Repository.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
