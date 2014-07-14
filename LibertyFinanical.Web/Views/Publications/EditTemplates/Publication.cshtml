@@ -19,7 +19,6 @@
     </div>
     <div class="row">
         <label class="col-lg-2">Genre</label>
-        @Html.DropDownListFor(e => e.Publication.SelectedGenres, Model.GenreList)
-        <btn class="btn" >Add Genre</btn>
+        @Html.DisplayFor(e => e.Publication.GenrePublications)
     </div>
 </div>

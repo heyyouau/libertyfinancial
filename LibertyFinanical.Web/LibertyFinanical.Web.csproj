@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -214,6 +215,8 @@
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\GenrePublications.cshtml" />
+    <Content Include="Views\Publications\EditTemplates\GenrePublications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />
