@@ -17,6 +17,6 @@ namespace Liberty.Repository.Interface
 
         List<Publication> GetPublicationsByAuthor(int authorId);
 
-
+        List<Genre> GetGenres();
     }
 }

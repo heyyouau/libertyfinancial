@@ -35,5 +35,10 @@ namespace Liberty.Lib
         {
             throw new NotImplementedException();
         }
+
+        public List<Genre> GetGenres()
+        {
+            return _dataContext.GetGenres().ToList();
+        }
     }
 }

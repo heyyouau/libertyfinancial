@@ -22,6 +22,9 @@ namespace LibertyFinanical.Web
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            //configure data directory
+            AppDomain.CurrentDomain.SetData("DataDirectory", Server.MapPath("~/App_Data/"));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace LibertyFinanical.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(ILogInModel model, string returnUrl)
+        public ActionResult Login(LoginModel model, string returnUrl)
         {
            //if this was a real application, we would check the database here 
            //for the purposes of this application, if you enter then name john and password wayne, you will get 

@@ -69,6 +69,8 @@ namespace LibertyFinanical.Web.App_Start
             kernel.Bind<IAuthorsRepository>().To<AuthorsRepository>().InSingletonScope();
             kernel.Bind<ISessionContext>().To<SessionContext>().InSingletonScope();
             kernel.Bind<IMemberRepository>().To<MemberRepository>().InSingletonScope();
+            kernel.Bind<IPublicationRepository>().To<PublicationRepository>().InSingletonScope();
+            
         }        
     }
 }

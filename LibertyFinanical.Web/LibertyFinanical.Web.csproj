@@ -149,13 +149,16 @@
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PublicationController.cs" />
+    <Compile Include="Controllers\PublicationsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\LookupValues.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
+    <Compile Include="Models\PublicationEditor.cs" />
+    <Compile Include="Models\PublicationSearchParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\MembersController.cs" />
   </ItemGroup>
@@ -191,7 +194,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.7.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -206,6 +211,9 @@
     <Content Include="Views\Authors\DisplayTemplates\Authors.cshtml" />
     <Content Include="Views\Authors\EditTemplates\Author.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
+    <Content Include="Views\Publications\Index.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
+    <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />

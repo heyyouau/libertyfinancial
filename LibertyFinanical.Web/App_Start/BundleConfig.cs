@@ -13,7 +13,8 @@ namespace LibertyFinanical.Web.App_Start
         {
 
                bundles.Add(new ScriptBundle("~/jquery/foot")
-                            .Include("~/Scripts/jquery-1.9.1.js"));
+                            .Include("~/Scripts/jquery-1.9.1.js")
+                            .Include("~/Scripts/jquery.unobtrusive-ajax.js"));
 
              bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));

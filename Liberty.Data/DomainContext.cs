@@ -1,6 +1,7 @@
 ﻿using Liberty.Data.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Linq;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Liberty.Data
 
         public DomainContext()
         {
+
             //always get the deep version of the publication entity
             DataLoadOptions options = new DataLoadOptions();
             options.LoadWith<Publication>(g => g.GenrePublications);
@@ -22,6 +24,9 @@ namespace Liberty.Data
             //always get the publications and members with the borrowing
             options.LoadWith<Borrowing>(p => p.Publication);
             options.LoadWith<Borrowing>(m => m.Member);
+
+            options.LoadWith<GenrePublication>(gp => gp.Genre);
+            options.LoadWith<AuthorPublication>(ap => ap.Author);
 
             _dataContext.LoadOptions = options;
         }
@@ -130,7 +135,7 @@ namespace Liberty.Data
 
         public IQueryable<Genre> GetGenres()
         {
-            throw new NotImplementedException();
+            return _dataContext.Genres;
         }
     }
 }

@@ -1,0 +1,25 @@
+﻿@model LibertyFinanical.Web.Models.PublicationEditor
+
+@{
+    ViewBag.Title = "Publication";
+}
+
+<div class="row">
+    <div class="row">
+        <label class="col-lg-2">Title</label>
+        @Html.TextBoxFor(e => e.Publication.Title)
+    </div>
+    <div class="row">
+        <label class="col-lg-2">Author</label>
+        
+    </div>
+    <div class="row">
+        <label class="col-lg-2">ISBN</label>
+        @Html.TextBoxFor(e => e.Publication.ISBN)
+    </div>
+    <div class="row">
+        <label class="col-lg-2">Genre</label>
+        @Html.DropDownListFor(e => e.Publication.SelectedGenres, Model.GenreList)
+        <btn class="btn" >Add Genre</btn>
+    </div>
+</div>
