@@ -1,0 +1,34 @@
+﻿@model  LibertyFinancial.Web.MVC5.Models.AuthorSearchParams
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="row">
+    <div class="col-sm-4">
+        Author Management
+    </div>
+</div>
+<div class="row">
+    
+        Author Search
+</div>
+<div class="row">
+@using (Ajax.BeginForm("_ajaxAuthorSearch", new AjaxOptions {UpdateTargetId = "authorList", InsertionMode=InsertionMode.Replace}))
+{
+    <label class="col-sm-4">Search by Surname</label>
+    @Html.TextBoxFor(e => e.AuthorLastName)
+    <button class="btn btn-Primary">Search</button>
+}
+</div>
+<div class="row">
+    @Ajax.ActionLink("Add Author", "_ajaxSaveAuthor", new {@class="btn"}, new AjaxOptions{UpdateTargetId = "authorList", HttpMethod="Get", InsertionMode=InsertionMode.Replace})
+</div>
+<div class="row" id="authorList"></div>
+ 
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+

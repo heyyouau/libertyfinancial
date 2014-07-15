@@ -8,10 +8,10 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4CF52613-A098-45B7-BA29-7DA5A91D3EC8}</ProjectGuid>
-    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LibertyFinanical.Web</RootNamespace>
+    <RootNamespace>LibertyFinancial.Web</RootNamespace>
     <AssemblyName>LibertyFinanical.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
@@ -71,6 +71,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -214,6 +215,9 @@
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\GenrePublication.cshtml" />
+    <Content Include="Views\Publications\EditTemplates\GenrePublications.cshtml" />
+    <Content Include="Views\Publications\EditTemplates\Genre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />

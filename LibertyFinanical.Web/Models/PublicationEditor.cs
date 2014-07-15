@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web.Models
+namespace LibertyFinancial.Web.Models
 {
     public class PublicationEditor
     {

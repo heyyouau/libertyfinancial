@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Optimization;
 
 
-namespace LibertyFinanical.Web.App_Start
+namespace LibertyFinancial.Web.App_Start
 {
     public class BundleConfig
     {

@@ -1,14 +1,14 @@
 ﻿using Liberty.Data;
 using Liberty.Data.Interfaces;
 using Liberty.Repository.Interface;
-using LibertyFinanical.Web.Models;
+using LibertyFinancial.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web.Controllers
+namespace LibertyFinancial.Web.Controllers
 {
     [Authorize]
     public class AuthorsController : BaseController

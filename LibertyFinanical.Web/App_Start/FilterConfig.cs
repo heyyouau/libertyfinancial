@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web
+namespace LibertyFinancial.Web
 {
     public class FilterConfig
     {

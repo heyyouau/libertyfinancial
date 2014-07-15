@@ -1,12 +1,12 @@
 ﻿using Liberty.Data.Interfaces;
 using Liberty.Repository.Interface;
-using LibertyFinanical.Web.Models;
+using LibertyFinancial.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web.Controllers
+namespace LibertyFinancial.Web.Controllers
 {
     public class AccountController : BaseController
     {

@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace LibertyFinanical.Web.Models
+namespace LibertyFinancial.Web.Models
 {
     public class LoginModel : ILogInModel
     {

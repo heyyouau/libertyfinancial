@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web.Controllers
+namespace LibertyFinancial.Web.Controllers
 {
     public class BaseController : Controller
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace LibertyFinanical.Web.Controllers
+namespace LibertyFinancial.Web.Controllers
 {
     [Authorize]
     public class HomeController : BaseController

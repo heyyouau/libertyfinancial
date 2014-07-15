@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(LibertyFinanical.Web.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(LibertyFinanical.Web.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(LibertyFinancial.Web.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(LibertyFinancial.Web.App_Start.NinjectWebCommon), "Stop")]
 
-namespace LibertyFinanical.Web.App_Start
+namespace LibertyFinancial.Web.App_Start
 {
     using System;
     using System.Web;

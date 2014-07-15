@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Liberty.Data.GenrePublication>
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+         @Html.LabelFor(e => e.Genre.GenreName, new { @class="col-lg-t4" })
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ }) |
+    </div>
+}

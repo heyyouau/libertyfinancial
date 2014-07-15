@@ -1,0 +1,43 @@
+﻿@model Liberty.Data.Author
+
+
+
+@using (Html.BeginForm(new { role="form" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Error", new { @class = "has-error" })
+
+    <fieldset>
+        <legend>Author</legend>
+
+        <div class="form-group">
+            <label class="col-lg-2">
+                @Html.LabelFor(model => model.AuthorFirstName)
+            </label>
+            @Html.EditorFor(model => model.AuthorFirstName)
+            @Html.ValidationMessageFor(model => model.AuthorFirstName)
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2">
+                @Html.LabelFor(model => model.AuthorLastName)
+            </label>
+            @Html.EditorFor(model => model.AuthorLastName)
+            @Html.ValidationMessageFor(model => model.AuthorLastName)
+        </div>
+
+        <div class="form-group">
+            <label class="col-lg-2">
+                @Html.LabelFor(model => model.Notes)
+            </label>
+            @Html.EditorFor(model => model.Notes)
+            @Html.ValidationMessageFor(model => model.Notes)
+        </div>
+
+        <p>
+            <button class="btn btn-Primary">Save Record</button>
+        </p>
+    </fieldset>
+}
+
+

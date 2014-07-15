@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace LibertyFinanical.Web.Models
+namespace LibertyFinancial.Web.Models
 {
     public class MemberSearchTerms : IMemberSearchTerms
     {
