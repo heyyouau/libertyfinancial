@@ -11,20 +11,32 @@ namespace Liberty.Data
 
         private List<Genre> _genres = new List<Genre>(); 
 
-        public List<Genre> SelectedGenres
+        public List<Genre> Genres
         {
             get
             {
-                if (_genres == null)
-                {
-                    foreach (var x in this.GenrePublications)
-                    {
-                        _genres.Add(x.Genre);
-                    }
-                }
                 return _genres;
             }
+            set
+            {
+                _genres = value;
+
+            }
             
+        }
+
+        private List<Author> _authors = new List<Author>();
+
+        public List<Author> Authors
+        {
+            get
+            {
+                return _authors;
+            }
+            set
+            {
+                _authors = value;
+            }
         }
     }
 }

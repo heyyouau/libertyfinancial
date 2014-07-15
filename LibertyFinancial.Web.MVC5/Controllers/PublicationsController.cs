@@ -24,6 +24,12 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         }
 
 
+        public ActionResult _ajaxPublicationSearch(PublicationSearchParameters parameters)
+        {
+            return PartialView("DisplayTemplates/Publications", _publicationRepository.GetPublications(parameters));
+        }
+
+
         public ActionResult _ajaxAddGenre()
         {
             return PartialView("EditTemplates/Genre", _publicationRepository.GetGenres());
@@ -32,7 +38,13 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpGet]
         public ActionResult _ajaxSavePublication()
         {
-            return PartialView("EditTemplates/Publication", new PublicationEditor(new Publication(), _publicationRepository.GetGenres()));
+            return PartialView("EditTemplates/Publication", new Publication());
+        }
+
+        public ActionResult _getAuthorSelector()
+        {
+            return PartialView("EditTemplates/Authors");
+
         }
     }
 }

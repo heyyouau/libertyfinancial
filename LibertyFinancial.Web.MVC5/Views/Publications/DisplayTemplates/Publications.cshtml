@@ -3,10 +3,13 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
+<table class="table table-bordered table-striped"  >
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            Authors
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ISBN)
@@ -17,7 +20,6 @@
         <th>
             Genres
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -26,18 +28,16 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
+            @{Html.RenderPartial("DisplayTemplates/Authors", item.Authors);}
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.ISBN)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Synopsis)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GenrePublications)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
+            @{Html.RenderPartial("DisplayTemplates/Genres", item.Genres);}
         </td>
     </tr>
 }

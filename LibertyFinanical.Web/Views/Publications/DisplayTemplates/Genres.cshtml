@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Liberty.Data.Genre>
+
+xxx
+@foreach (var item in Model)
+{
+    <div class="row">
+         @Html.LabelFor(e => item.GenreName)            
+    </div>
+}

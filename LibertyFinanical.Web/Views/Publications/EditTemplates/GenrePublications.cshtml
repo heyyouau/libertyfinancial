@@ -1,21 +1,10 @@
-﻿@model IEnumerable<Liberty.Data.GenrePublication>
+﻿@model IEnumerable<Liberty.Data.Genre>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th></th>
-    </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
+    <div class="row">
+    @Html.DisplayFor(e => item.GenreName
+    </div>
 }
 
-</table>
+

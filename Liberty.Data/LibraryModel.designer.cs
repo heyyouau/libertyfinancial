@@ -54,7 +54,7 @@ namespace Liberty.Data
     #endregion
 		
 		public LibraryModelDataContext() : 
-				base(global::Liberty.Data.Properties.Settings.Default.Liberty_Data_StoreConnectionString, mappingSource)
+				base(global::Liberty.Data.Properties.Settings.Default.Liberty_Data_StoreConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -136,6 +136,14 @@ namespace Liberty.Data
 			get
 			{
 				return this.GetTable<Publication>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vewGenresAndPublication> vewGenresAndPublications
+		{
+			get
+			{
+				return this.GetTable<vewGenresAndPublication>();
 			}
 		}
 	}
@@ -1393,6 +1401,69 @@ namespace Liberty.Data
 		{
 			this.SendPropertyChanging();
 			entity.Publication = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vewGenresAndPublications")]
+	public partial class vewGenresAndPublication
+	{
+		
+		private int _PublicationId;
+		
+		private string _GenreName;
+		
+		private int _Id;
+		
+		public vewGenresAndPublication()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicationId", DbType="Int NOT NULL")]
+		public int PublicationId
+		{
+			get
+			{
+				return this._PublicationId;
+			}
+			set
+			{
+				if ((this._PublicationId != value))
+				{
+					this._PublicationId = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenreName", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
+		public string GenreName
+		{
+			get
+			{
+				return this._GenreName;
+			}
+			set
+			{
+				if ((this._GenreName != value))
+				{
+					this._GenreName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL")]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this._Id = value;
+				}
+			}
 		}
 	}
 }

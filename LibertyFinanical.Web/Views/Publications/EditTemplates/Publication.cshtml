@@ -1,4 +1,4 @@
-﻿@model LibertyFinanical.Web.Models.PublicationEditor
+﻿@model Liberty.Data.Publication
 
 @{
     ViewBag.Title = "Publication";
@@ -23,21 +23,21 @@
 <div class="row">
     <div class="row">
         <label class="col-lg-2">Title</label>
-        @Html.TextBoxFor(e => e.Publication.Title)
+        @Html.TextBoxFor(e => e.Title)
     </div>
     <div class="row">
         <label class="col-lg-2">Author</label>
     </div>
     <div class="row">
         <label class="col-lg-2">ISBN</label>
-        @Html.TextBoxFor(e => e.Publication.ISBN)
+        @Html.TextBoxFor(e => e.ISBN)
     </div>
     <div class="row">
         <label class="col-lg-2">Genre</label>
-        @Html.DisplayFor(e => e.Publication.GenrePublications)
+        @Html.DisplayFor(e => e.Genres)
     </div>
     <div class="row">
-        @Ajax.ActionLink("Add Genre", "_ajaxAddGenre",new AjaxOptions{InsertionMode = InsertionMode.Replace, }
+        @Ajax.ActionLink("Add Genre", "_ajaxAddGenre",new AjaxOptions{InsertionMode = InsertionMode.Replace})
     </div>
 </div>
 

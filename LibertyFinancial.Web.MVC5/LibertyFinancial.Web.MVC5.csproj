@@ -57,6 +57,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -193,7 +194,6 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\LookupValues.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
-    <Compile Include="Models\PublicationEditor.cs" />
     <Compile Include="Models\PublicationSearchParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -238,13 +238,14 @@
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\GenrePublication.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Genres.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Genre.cshtml" />
-    <Content Include="Views\Publications\EditTemplates\GenrePublications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Authors.cshtml" />
+    <Content Include="Views\Publications\EditTemplates\Authors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />

@@ -14,21 +14,8 @@ namespace Liberty.Data
         private LibraryModelDataContext _dataContext = new LibraryModelDataContext();
 
         public DomainContext()
-        {
-
-            //always get the deep version of the publication entity
-            DataLoadOptions options = new DataLoadOptions();
-            options.LoadWith<Publication>(g => g.GenrePublications);
-            options.LoadWith<Publication>(a => a.AuthorPublications);
+        {            
             
-            //always get the publications and members with the borrowing
-            options.LoadWith<Borrowing>(p => p.Publication);
-            options.LoadWith<Borrowing>(m => m.Member);
-
-            options.LoadWith<GenrePublication>(gp => gp.Genre);
-            options.LoadWith<AuthorPublication>(ap => ap.Author);
-
-            _dataContext.LoadOptions = options;
         }
 
         public void SaveChanges()
@@ -40,6 +27,17 @@ namespace Liberty.Data
         {
             return _dataContext.Authors;
         }
+
+
+        public IQueryable<Author> GetAuthorsByPublication(int publicationId)
+        {
+            return (from a in _dataContext.Authors
+                    join ap in _dataContext.AuthorPublications
+                        on a.AuthorId equals ap.AuthorId
+                    where ap.PublicationId == publicationId
+                    select a);
+        }
+
 
         public Author GetAuthor(int authorId)
         {
@@ -105,6 +103,40 @@ namespace Liberty.Data
         #endregion
 
 
+        public IQueryable<Publication> GetPublicationsByAuthor(string authorName)
+        {
+            return (from p in _dataContext.Publications
+                    join ap in _dataContext.AuthorPublications
+                        on p.BookId equals ap.PublicationId
+                    join a in _dataContext.Authors
+                        on ap.AuthorId equals a.AuthorId
+                    where a.AuthorLastName == authorName
+                    select p);
+        }
+
+        public IQueryable<Publication> GetPublicationsByGenre(List<int> genres)
+        {
+            return (from p in _dataContext.Publications
+                    join ap in _dataContext.GenrePublications
+                        on p.BookId equals ap.PublicationId
+                    join a in _dataContext.Genres
+                        on ap.GenreId equals a.Id
+                    where genres.Contains(a.Id)
+                    select p);
+        }
+
+
+        public IQueryable<Publication> GetPublicationsByAuthorId(int authorId)
+        {
+            return (from p in _dataContext.Publications
+                    join ap in _dataContext.AuthorPublications
+                        on p.BookId equals ap.PublicationId
+                    join a in _dataContext.Authors
+                        on ap.AuthorId equals a.AuthorId
+                        where a.AuthorId == authorId
+                    select p);
+        }
+
         public Publication GetPublication(int publicationId)
         {
             return _dataContext.Publications.FirstOrDefault(e => e.BookId == publicationId);
@@ -136,6 +168,15 @@ namespace Liberty.Data
         public IQueryable<Genre> GetGenres()
         {
             return _dataContext.Genres;
+        }
+
+        public IQueryable<Genre> GetGenresByPublication(int publicationId)
+        {
+            return (from genre in _dataContext.Genres
+                    join gp in _dataContext.GenrePublications
+                        on genre.Id equals gp.GenreId
+                    where gp.PublicationId == publicationId
+                    select genre);
         }
     }
 }

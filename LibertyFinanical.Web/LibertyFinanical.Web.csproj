@@ -215,7 +215,7 @@
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\GenrePublication.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Genres.cshtml" />
     <Content Include="Views\Publications\EditTemplates\GenrePublications.cshtml" />
     <Content Include="Views\Publications\EditTemplates\Genre.cshtml" />
   </ItemGroup>

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Liberty.Data.Genre>
+
+
+@foreach (var item in Model)
+{
+    <div class="row">
+         @Html.DisplayFor(e => item.GenreName, new { @class="col-lg-t4" })
+    </div>
+}

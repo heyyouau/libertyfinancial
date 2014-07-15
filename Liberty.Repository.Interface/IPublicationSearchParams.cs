@@ -8,13 +8,10 @@ namespace Liberty.Repository.Interface
 {
     public interface IPublicationSearchParams
     {
-
         int AuthorId { get; set;}
-
-        string BookName { get; set; }
-
+        string BookTitle { get; set; }
+        string ISBN { get; set; }
         string AuthorLastName { get; set; }
-
         List<int> GenreId { get; set; }
     }
 }

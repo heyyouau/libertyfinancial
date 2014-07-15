@@ -32,7 +32,7 @@ namespace LibertyFinancial.Web.Models
                     foreach (var genre in _genres)
                     {
                         
-                        _selectList.Add(new SelectListItem() { Value = genre.Id.ToString(), Text = genre.GenreName, Selected = Publication.SelectedGenres.Any(e => e.Id == genre.Id) });
+                        _selectList.Add(new SelectListItem() { Value = genre.Id.ToString(), Text = genre.GenreName, Selected = Publication.Genres.Any(e => e.Id == genre.Id) });
                     }
                 }
                 return _selectList;

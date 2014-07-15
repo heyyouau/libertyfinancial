@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<Liberty.Data.Publication>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table>
     <tr>
         <th>
@@ -15,9 +12,8 @@
             @Html.DisplayNameFor(model => model.Synopsis)
         </th>
         <th>
-            Genres
+            @Html.DisplayNameFor(model => model.Genres)
         </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -32,12 +28,7 @@
             @Html.DisplayFor(modelItem => item.Synopsis)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GenrePublications)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BookId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BookId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BookId })
+            @Html.DisplayFor(modelItem => item.Genres)
         </td>
     </tr>
 }

@@ -18,7 +18,32 @@ namespace Liberty.Lib
         }
         public List<Publication> GetPublications(IPublicationSearchParams searchParams)
         {
-            throw new NotImplementedException();
+            var pubs = new List<Publication>();
+            if (searchParams.AuthorId != 0)
+                pubs = _dataContext.GetPublicationsByAuthorId(searchParams.AuthorId).ToList();
+            else if (searchParams.GenreId.Count > 0)
+            {
+                pubs = _dataContext.GetPublicationsByGenre(searchParams.GenreId).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(searchParams.AuthorLastName))
+            {
+                pubs = _dataContext.GetPublicationsByAuthor(searchParams.AuthorLastName).ToList();
+            }
+            else
+            {
+                pubs = _dataContext.GetPublications().Where(e => (e.ISBN == searchParams.ISBN || string.IsNullOrWhiteSpace(searchParams.ISBN))
+                                                                && (e.Title == searchParams.BookTitle || string.IsNullOrWhiteSpace(searchParams.BookTitle))).ToList();
+            }
+
+
+            pubs.ForEach(e => Hydrate(e));
+            return pubs;
+        }
+
+        private void Hydrate(Publication p)
+        {
+            p.Genres = _dataContext.GetGenresByPublication(p.BookId).ToList();
+            p.Authors = _dataContext.GetAuthorsByPublication(p.BookId).ToList();
         }
 
         public Publication GetPublication(int publicationId)

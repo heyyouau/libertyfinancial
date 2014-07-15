@@ -45,9 +45,10 @@ namespace Liberty.Data.Interfaces
 
         #endregion
 
-
-
-
-
+        IQueryable<Publication> GetPublicationsByAuthorId(int authorId);
+        IQueryable<Publication> GetPublicationsByAuthor(string authorName);
+        IQueryable<Publication> GetPublicationsByGenre(List<int> genres);
+        IQueryable<Genre> GetGenresByPublication(int publicationId);
+        IQueryable<Author> GetAuthorsByPublication(int publicationId);
     }
 }
