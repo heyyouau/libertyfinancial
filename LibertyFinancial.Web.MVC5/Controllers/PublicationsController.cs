@@ -13,9 +13,11 @@ namespace LibertyFinancial.Web.MVC5.Controllers
     public class PublicationsController : BaseController
     {
         private IPublicationRepository _publicationRepository;
-        public PublicationsController(IPublicationRepository publicationRepository, IDataContext dataContext, ISessionContext sessionContext):base(dataContext, sessionContext)
+        private IAuthorsRepository _authorsRepository;
+        public PublicationsController(IPublicationRepository publicationRepository, IAuthorsRepository authorRepository, IDataContext dataContext, ISessionContext sessionContext):base(dataContext, sessionContext)
         {
             _publicationRepository = publicationRepository;
+            _authorsRepository = authorRepository;
         }
 
         public ActionResult Index()
@@ -43,7 +45,11 @@ namespace LibertyFinancial.Web.MVC5.Controllers
 
         public ActionResult _getAuthorSelector()
         {
-            return PartialView("EditTemplates/Authors");
+            return PartialView("EditTemplates/Authors", _authorsRepository.GetAuthors(null));
+        }
+
+        public ActionResult _addAuthor()
+        {
 
         }
     }

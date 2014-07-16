@@ -65,5 +65,10 @@ namespace Liberty.Lib
         {
             return _dataContext.GetGenres().ToList();
         }
+
+        public List<Author> GetAuthors()
+        {
+            return _dataContext.GetAuthors().ToList();
+        }
     }
 }

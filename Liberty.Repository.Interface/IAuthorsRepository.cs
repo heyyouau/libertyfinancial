@@ -14,5 +14,6 @@ namespace Liberty.Repository.Interface
         Author SaveAuthor(Author author);
 
         List<Author> GetAuthors(IAuthorSearchParams searchTerms);
+
     }
 }
