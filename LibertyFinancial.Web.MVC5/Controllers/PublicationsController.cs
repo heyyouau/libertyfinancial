@@ -14,10 +14,12 @@ namespace LibertyFinancial.Web.MVC5.Controllers
     {
         private IPublicationRepository _publicationRepository;
         private IAuthorsRepository _authorsRepository;
-        public PublicationsController(IPublicationRepository publicationRepository, IAuthorsRepository authorRepository, IDataContext dataContext, ISessionContext sessionContext):base(dataContext, sessionContext)
+        private SessionHelper _sessionHelper;
+        public PublicationsController(IPublicationRepository publicationRepository, IAuthorsRepository authorRepository, SessionHelper helper, IDataContext dataContext, ISessionContext sessionContext):base(dataContext, sessionContext)
         {
             _publicationRepository = publicationRepository;
             _authorsRepository = authorRepository;
+            _sessionHelper = helper;
         }
 
         public ActionResult Index()
@@ -40,17 +42,34 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpGet]
         public ActionResult _ajaxSavePublication()
         {
-            return PartialView("EditTemplates/Publication", new Publication());
+            return PartialView("EditorTemplates/Publication", new Publication());
+        }
+
+        [HttpPost]
+        public ActionResult _ajaxSavePublication(Publication publication)
+        {
+           var pub =  _publicationRepository.SavePublication(publication);
+           return PartialView("EditorTemplates/Publication", pub);
         }
 
         public ActionResult _getAuthorSelector()
         {
-            return PartialView("EditTemplates/Authors", _authorsRepository.GetAuthors(null));
+            ViewBag.AuthorSelectList = _sessionHelper.Authors;
+            return PartialView("EditorTemplates/Authors", _authorsRepository.GetAuthors(null));
         }
+
+        [HttpGet]
+        public ActionResult _editPublication(int id)
+        {
+            var model = _publicationRepository.GetPublication(id);
+            return PartialView("EditorTemplates/Publication", model);
+        }
+
+
 
         public ActionResult _addAuthor()
         {
-
+            return null;
         }
     }
 }

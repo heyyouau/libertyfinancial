@@ -186,13 +186,14 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PublicationsController.cs" />
+    <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\LookupValues.cs" />
+    <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
     <Compile Include="Models\PublicationSearchParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\liberty.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -238,14 +240,16 @@
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\Genres.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
-    <Content Include="Views\Publications\EditTemplates\Genre.cshtml" />
-    <Content Include="Views\Publications\EditTemplates\Publication.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Genre.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Publication.cshtml" />
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\Authors.cshtml" />
-    <Content Include="Views\Publications\EditTemplates\Authors.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Author.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Author.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Genre.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Synopsis.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Authors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />

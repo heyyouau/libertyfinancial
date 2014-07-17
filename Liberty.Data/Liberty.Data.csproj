@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Author.cs" />
     <Compile Include="DomainContext.cs" />
+    <Compile Include="Genre.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="LibraryModel.designer.cs">
       <AutoGen>True</AutoGen>

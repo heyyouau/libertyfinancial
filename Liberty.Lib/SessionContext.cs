@@ -1,4 +1,6 @@
-﻿using Liberty.Repository.Interface;
+﻿using Liberty.Data;
+using Liberty.Data.Interfaces;
+using Liberty.Repository.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,11 @@ namespace Liberty.Lib
     public class SessionContext : ISessionContext
     {
         private bool _loggedIn;
+
+        public SessionContext(IDataContext dataContext)
+        {
+
+        }
 
         public bool IsLoggedIn
         {
@@ -31,5 +38,6 @@ namespace Liberty.Lib
 
             return IsLoggedIn;
         }
+
     }
 }

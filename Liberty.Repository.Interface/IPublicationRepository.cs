@@ -10,15 +10,10 @@ namespace Liberty.Repository.Interface
     public interface IPublicationRepository
     {
         List<Publication> GetPublications(IPublicationSearchParams searchParams);
-
         Publication GetPublication(int publicationId);
-
         Publication SavePublication(Publication publication);
-
         List<Publication> GetPublicationsByAuthor(int authorId);
-
         List<Genre> GetGenres();
-
         List<Author> GetAuthors();
     }
 }

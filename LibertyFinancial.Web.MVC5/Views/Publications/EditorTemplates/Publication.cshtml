@@ -1,0 +1,63 @@
+﻿@model Liberty.Data.Publication
+
+@{
+    ViewBag.Title = "Publication";
+    AjaxOptions options = new AjaxOptions()
+    {
+        UpdateTargetId = "publicationList",
+        InsertionMode = InsertionMode.InsertBefore,
+    };
+}
+
+@using (Ajax.BeginForm("_ajaxSavePublication", options)) 
+{ 
+<div class="row">
+    <div class="row">
+        <label class="col-lg-2">Title</label>
+        <div class="col-lg-10">@Html.EditorFor(e => e.Title)</div>
+    </div>
+    <div id="authors" class="row">
+        <label class="col-lg-2">Author</label>
+        <div class="col-lg-10">
+            <div id="authorList">@Html.EditorFor(e => e.Authors)</div>
+            @Ajax.ActionLink("Add Author", "_getAuthorSelector", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "authorAdditions" })
+            <div id="authorAdditions">
+
+            </div>
+            @*@Html.LinkToAddNestedForm("Add Author", "authors", "author", "Authors", typeof(Author))*@
+        </div>
+    </div>
+    <div class="row">
+        <label class=" col-lg-2">ISBN</label>
+        <div class="col-lg-10">
+            @Html.EditorFor(e => e.ISBN)
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-lg-2">Genres</label>
+        <div class="col-lg-10">
+            @Html.EditorFor(e => e.Genres)
+        </div>
+    </div>
+    <div class="row">
+        <label class="col-lg-2">Synopsis</label>
+        <div class="col-lg-10">
+            @Html.EditorFor(e => e.Synopsis, "Synopsis")
+        </div>
+   </div>
+    <div class="row">
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </div>
+</div>
+}
+
+<script type="text/javascript">
+    function addAuthor(source) {
+
+        var id = $("#authorSelector").val();
+        var nextIndex = $("#authors .author").length;
+        @*var x = @Html.AddModelNode()
+        $("#authorList").append("#au*@thorSelector option:selected").text();
+
+    }
+</script>

@@ -28,6 +28,9 @@ namespace LibertyFinancial.Web.MVC5
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+            bundles.Add(new ScriptBundle("~/liberty").Include(
+                      "~/Scripts/liberty.js"));
+
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = false;

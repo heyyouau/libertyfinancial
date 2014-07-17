@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<Liberty.Data.Publication>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table table-bordered table-striped"  >
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            Authors
+            @Html.DisplayNameFor(model => model.Authors)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ISBN)
@@ -18,8 +16,9 @@
             @Html.DisplayNameFor(model => model.Synopsis)
         </th>
         <th>
-            Genres
+            @Html.DisplayNameFor(model => model.Genres)
         </th>
+        <th>&nbsp;</th>
     </tr>
 
 @foreach (var item in Model) {
@@ -28,7 +27,7 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @{Html.RenderPartial("DisplayTemplates/Authors", item.Authors);}
+            @Html.DisplayFor(modelItem => item.Authors)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ISBN)
@@ -37,7 +36,10 @@
             @Html.DisplayFor(modelItem => item.Synopsis)
         </td>
         <td>
-            @{Html.RenderPartial("DisplayTemplates/Genres", item.Genres);}
+            @Html.DisplayFor(modelItem => item.Genres)
+        </td>
+        <td>
+            @Ajax.ActionLink("Edit", "_editPublication", new { id = item.BookId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" })
         </td>
     </tr>
 }

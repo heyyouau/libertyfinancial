@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Liberty.Data.Author>
+
+<select id="authorSelector" onchange="addAuthor()">
+    @foreach (var x in Model)
+    {
+        <option value="@x.AuthorId">@x.AuthorFullName</option>
+    }
+</select>
+

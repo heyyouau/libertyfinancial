@@ -12,6 +12,7 @@ namespace Liberty.Lib
     public class PublicationRepository : IPublicationRepository
     {
         IDataContext _dataContext;
+
         public PublicationRepository(IDataContext dataContext)
         {
             _dataContext = dataContext;
@@ -48,7 +49,9 @@ namespace Liberty.Lib
 
         public Publication GetPublication(int publicationId)
         {
-            throw new NotImplementedException();
+            var pub = _dataContext.GetPublication(publicationId);
+            Hydrate(pub);
+            return pub;
         }
 
         public Publication SavePublication(Data.Publication publication)
