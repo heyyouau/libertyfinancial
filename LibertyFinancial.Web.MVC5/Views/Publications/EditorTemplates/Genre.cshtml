@@ -1,0 +1,14 @@
+﻿@model Liberty.Data.Genre
+@{
+    ViewBag.Title = "Genre";
+}
+
+<div class="row" id="gedit_@Model.Id">
+    @Html.DisplayFor(e => e.GenreName)
+    @Html.HiddenFor(e => e.Delete)
+    @Html.LinkToRemoveNestedForm("Remove", "gedit_" + Model.Id, "input.mark-for-delete")
+</div>
+        
+
+
+
