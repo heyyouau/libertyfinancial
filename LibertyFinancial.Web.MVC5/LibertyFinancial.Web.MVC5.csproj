@@ -187,12 +187,15 @@
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PublicationsController.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
+    <Compile Include="Extensions\NoCache.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SelectableAuthor.cs" />
+    <Compile Include="Models\SelectableGenre.cs" />
     <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
     <Compile Include="Models\PublicationSearchParameters.cs" />
@@ -249,7 +252,12 @@
     <Content Include="Views\Publications\DisplayTemplates\Author.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Genre.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\Synopsis.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\Authors.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\AuthorSelector.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\SelectableAuthor.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\GenreSelector.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\SelectableGenre.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\GenrePublication.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\AuthorPublication.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Members\DisplayTemplates\" />

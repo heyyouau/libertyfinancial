@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
+    [NoCache]
     public class PublicationsController : BaseController
     {
         private IPublicationRepository _publicationRepository;
@@ -54,8 +55,17 @@ namespace LibertyFinancial.Web.MVC5.Controllers
 
         public ActionResult _getAuthorSelector()
         {
-            ViewBag.AuthorSelectList = _sessionHelper.Authors;
-            return PartialView("EditorTemplates/Authors", _authorsRepository.GetAuthors(null));
+            var authorSelectorList = new List<SelectableAuthor>();
+            _sessionHelper.Authors.ForEach(e => authorSelectorList.Add(new SelectableAuthor(e)));
+            return PartialView("EditorTemplates/AuthorSelector", authorSelectorList);
+        }
+
+
+        public ActionResult _getGenreSelector()
+        {
+            var genreSelectorList = new List<SelectableGenre>();
+            _sessionHelper.Genres.ForEach(e => genreSelectorList.Add(new SelectableGenre(e)));
+            return PartialView("EditorTemplates/GenreSelector", genreSelectorList);
         }
 
         [HttpGet]
@@ -65,11 +75,5 @@ namespace LibertyFinancial.Web.MVC5.Controllers
             return PartialView("EditorTemplates/Publication", model);
         }
 
-
-
-        public ActionResult _addAuthor()
-        {
-            return null;
-        }
     }
 }

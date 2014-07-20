@@ -19,3 +19,35 @@ textarea {
 .modal-body{
     background-color: white;
 }
+
+
+.author{
+    background-color: aliceblue;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 150px;
+}
+
+
+.genre{
+    background-color: azure;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 150px;
+}
+
+.over{
+    border: 2px solid green;
+}
+
+.overError{
+    border: 2px solid red;
+}
+
+.hideCollapse{
+    display:none;
+}
+
+.hideStatic{
+    visibility:hidden;
+}

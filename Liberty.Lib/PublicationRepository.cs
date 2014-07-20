@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Liberty.Lib
 {
@@ -54,9 +55,50 @@ namespace Liberty.Lib
             return pub;
         }
 
-        public Publication SavePublication(Data.Publication publication)
+        public Publication SavePublication(Publication publication)
         {
-            throw new NotImplementedException();
+            //var publicationToUpdate = _dataContext.GetPublication(publication.BookId);
+            //if (publication.BookId > 0)
+            //    publicationToUpdate  
+
+
+            using (var t = new TransactionScope())
+            {
+                try
+                {
+                    //save the publication first and then update the many to many collections
+                    //var pub = _dataContext.SavePublication(publication);
+                    
+                    //update the authors
+                    foreach (var a in publication.Authors)
+                    {
+                        if (a.Delete && publication.AuthorPublications.Any(e => e.AuthorId == a.AuthorId))
+                            publication.AuthorPublications.Remove(publication.AuthorPublications.First(e => e.AuthorId == a.AuthorId));
+                        else if (!a.Delete && !publication.AuthorPublications.Any(e => e.AuthorId == a.AuthorId))
+                            publication.AuthorPublications.Add(new AuthorPublication() { AuthorId = a.AuthorId });
+                    }
+
+                    foreach (var g in publication.Genres)
+                    {
+                        if (g.Delete && publication.BookId > 0)
+                            publication.GenrePublications.Remove(publication.GenrePublications.First(e => e.GenreId == g.Id));
+                        else if (!g.Delete && !publication.GenrePublications.Any(e => e.GenreId == g.Id))
+                            publication.GenrePublications.Add(new GenrePublication() { GenreId = g.Id });
+                    }
+
+                    var newPub = _dataContext.SavePublication(publication);
+                    _dataContext.SaveChanges();
+                    t.Complete();
+
+                    return newPub;
+                }
+                catch (Exception ex)
+                {    
+                    throw ex;
+                }
+            }
+
+            
         }
 
         public List<Publication> GetPublicationsByAuthor(int authorId)

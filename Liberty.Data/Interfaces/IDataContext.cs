@@ -50,5 +50,13 @@ namespace Liberty.Data.Interfaces
         IQueryable<Publication> GetPublicationsByGenre(List<int> genres);
         IQueryable<Genre> GetGenresByPublication(int publicationId);
         IQueryable<Author> GetAuthorsByPublication(int publicationId);
+
+        void DeletePublicationAuthor(int p1, int p2);
+
+        void SavePublicationAuthor(int p1, int p2);
+
+        void DeletePublicationGenre(int p1, int p2);
+
+        void SavePublicationGenre(int p1, int p2);
     }
 }

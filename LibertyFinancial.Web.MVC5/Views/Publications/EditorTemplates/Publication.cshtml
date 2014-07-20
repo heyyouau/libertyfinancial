@@ -9,55 +9,58 @@
     };
 }
 
-@using (Ajax.BeginForm("_ajaxSavePublication", options)) 
-{ 
+
 <div class="row">
-    <div class="row">
-        <label class="col-lg-2">Title</label>
-        <div class="col-lg-10">@Html.EditorFor(e => e.Title)</div>
-    </div>
-    <div id="authors" class="row">
-        <label class="col-lg-2">Author</label>
-        <div class="col-lg-10">
-            <div id="authorList">@Html.EditorFor(e => e.Authors)</div>
-            @Ajax.ActionLink("Add Author", "_getAuthorSelector", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "authorAdditions" })
-            <div id="authorAdditions">
-
+    <div class="col-sm-10">
+        @using (Ajax.BeginForm("_ajaxSavePublication", options))
+        {
+            @Html.HiddenFor(e => e.BookId)
+             @Html.AntiForgeryToken()
+            @Html.EditorFor(e => e.AuthorPublications)
+            @Html.EditorFor(e => e.GenrePublications)
+            <div class="row">
+                <label class="col-lg-2">Title</label>
+                <div class="col-lg-10">@Html.EditorFor(e => e.Title)</div>
             </div>
-            @*@Html.LinkToAddNestedForm("Add Author", "authors", "author", "Authors", typeof(Author))*@
-        </div>
+            <div id="authors" class="row">
+                <label class="col-lg-2">Author</label>
+                <div class="col-lg-10">
+                    <div id="authorList">@Html.EditorFor(e => e.Authors)</div>
+                    <div id="authorAdditions" class="author" ondrop="dropAuthor(event)" ondragover="allowDrop(event)" ondragleave="handleDragLeave(event)">
+                        Drop Author Here
+                    </div>
+                    @Ajax.ActionLink("Show Authors", "_getAuthorSelector", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "elementSelector", OnSuccess = "presetDeletorVis('authorSelectors')" })
+                </div>
+            </div>
+            <div class="row">
+                <label class=" col-lg-2">ISBN</label>
+                <div class="col-lg-10">
+                    @Html.EditorFor(e => e.ISBN)
+                </div>
+            </div>
+            <div id="genres" class="row" >
+                <label class="col-lg-2">Genres</label>
+                <div class="col-lg-10">
+                    <div id="genreList">@Html.EditorFor(e => e.Genres)</div>
+                    <div id="genreAdditions" class="author" ondrop="dropGenre(event)" ondragover="allowDrop(event)" ondragleave="handleDragLeave(event)">
+                        Drop Genre Here
+                    </div>
+                    @Ajax.ActionLink("Show Genres", "_getGenreSelector", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "elementSelector", OnSuccess = "presetDeletorVis('genreSelectors')" })
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-lg-2">Synopsis</label>
+                <div class="col-lg-10">
+                    @Html.EditorFor(e => e.Synopsis, "Synopsis")
+                </div>
+            </div>
+            
+            <div class="row">
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+        }
     </div>
-    <div class="row">
-        <label class=" col-lg-2">ISBN</label>
-        <div class="col-lg-10">
-            @Html.EditorFor(e => e.ISBN)
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-lg-2">Genres</label>
-        <div class="col-lg-10">
-            @Html.EditorFor(e => e.Genres)
-        </div>
-    </div>
-    <div class="row">
-        <label class="col-lg-2">Synopsis</label>
-        <div class="col-lg-10">
-            @Html.EditorFor(e => e.Synopsis, "Synopsis")
-        </div>
-   </div>
-    <div class="row">
-        <input type="submit" class="btn btn-primary" value="Save" />
-    </div>
-</div>
-}
+    <div id="elementSelector" class="col-sm-2">
 
-<script type="text/javascript">
-    function addAuthor(source) {
-
-        var id = $("#authorSelector").val();
-        var nextIndex = $("#authors .author").length;
-        @*var x = @Html.AddModelNode()
-        $("#authorList").append("#au*@thorSelector option:selected").text();
-
-    }
-</script>
+    </div> <!--author selector--> 
+</div> <!-- outer row -->

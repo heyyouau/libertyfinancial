@@ -12,27 +12,44 @@ namespace LibertyFinancial.Web.MVC5.Models
     public class SessionHelper
     {
         private IAuthorsRepository _authors;
+        private IPublicationRepository _publications;
 
-        public SessionHelper(IAuthorsRepository authors)
+        public SessionHelper(IAuthorsRepository authors, IPublicationRepository publications)
         {
             _authors = authors;
+            _publications = publications;
         }
 
-        public IEnumerable<SelectListItem> Authors
+        public List<Author> Authors
         {
             get
             {
-                List<SelectListItem> authors;
+                List<Author> authors;
                 if (HttpContext.Current.Session["Authors"] == null)
                 {
-                    authors = new List<SelectListItem>();
-                    var alist = _authors.GetAuthors(null);
-                    alist.ForEach(e => authors.Add(new SelectListItem() { Text = e.AuthorFullName, Value = e.AuthorId.ToString() }));
+                    authors = _authors.GetAuthors(null).ToList();
                     HttpContext.Current.Session["Authors"] = authors;
                 }
                 else
-                    authors = HttpContext.Current.Session["Authors"] as List<SelectListItem>;
+                    authors = HttpContext.Current.Session["Authors"] as List<Author>;
                 return authors;
+            }
+        }
+
+        public List<Genre> Genres
+        {
+            get
+            {
+                List<Genre> genres;
+                if (HttpContext.Current.Session["Genres"] == null)
+                {
+                    genres = _publications.GetGenres().ToList();
+                    HttpContext.Current.Session["Genres"] = genres;
+                }
+                else
+                    genres = HttpContext.Current.Session["Genres"] as List<Genre>;
+                return genres;
+
             }
         }
     }

@@ -14,8 +14,12 @@ namespace Liberty.Data
         private LibraryModelDataContext _dataContext = new LibraryModelDataContext();
 
         public DomainContext()
-        {            
-            
+        {
+            var options = new DataLoadOptions();
+            options.LoadWith<Publication>(e => e.GenrePublications);
+            options.LoadWith<Publication>(e => e.AuthorPublications);
+
+            _dataContext.LoadOptions = options;
         }
 
         public void SaveChanges()
@@ -177,6 +181,39 @@ namespace Liberty.Data
                         on genre.Id equals gp.GenreId
                     where gp.PublicationId == publicationId
                     select genre);
+        }
+
+
+        public void DeletePublicationAuthor(int authorid, int publicationId)
+        {
+            var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
+
+            if (t != null)
+                _dataContext.AuthorPublications.DeleteOnSubmit(t);
+        }
+
+        public void SavePublicationAuthor(int authorid, int publicationId)
+        {
+            var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
+
+            if (t == null)
+                _dataContext.AuthorPublications.InsertOnSubmit(new AuthorPublication() { AuthorId = authorid, PublicationId = publicationId });
+        }
+
+        public void DeletePublicationGenre(int genreid, int publicationId)
+        {
+            var t = _dataContext.GenrePublications.FirstOrDefault(e => e.GenreId == genreid && e.PublicationId == publicationId);
+
+            if (t != null)
+                _dataContext.GenrePublications.DeleteOnSubmit(t);
+        }
+
+        public void SavePublicationGenre(int genreid, int publicationId)
+        {
+            var t = _dataContext.GenrePublications.FirstOrDefault(e => e.GenreId == genreid && e.PublicationId == publicationId);
+
+            if (t == null)
+                _dataContext.GenrePublications.InsertOnSubmit(new GenrePublication() { GenreId = genreid, PublicationId = publicationId});
         }
     }
 }
