@@ -16,16 +16,14 @@
         {
             @Html.HiddenFor(e => e.BookId)
              @Html.AntiForgeryToken()
-            @Html.EditorFor(e => e.AuthorPublications)
-            @Html.EditorFor(e => e.GenrePublications)
-            <div class="row">
+           <div class="row">
                 <label class="col-lg-2">Title</label>
                 <div class="col-lg-10">@Html.EditorFor(e => e.Title)</div>
             </div>
             <div id="authors" class="row">
                 <label class="col-lg-2">Author</label>
                 <div class="col-lg-10">
-                    <div id="authorList">@Html.EditorFor(e => e.Authors)</div>
+                    <div id="authorList">@Html.EditorFor(e => e.AuthorPublications)</div>
                     <div id="authorAdditions" class="author" ondrop="dropAuthor(event)" ondragover="allowDrop(event)" ondragleave="handleDragLeave(event)">
                         Drop Author Here
                     </div>
@@ -41,7 +39,7 @@
             <div id="genres" class="row" >
                 <label class="col-lg-2">Genres</label>
                 <div class="col-lg-10">
-                    <div id="genreList">@Html.EditorFor(e => e.Genres)</div>
+                    <div id="genreList">@Html.EditorFor(e => e.GenrePublications)</div>
                     <div id="genreAdditions" class="author" ondrop="dropGenre(event)" ondragover="allowDrop(event)" ondragleave="handleDragLeave(event)">
                         Drop Genre Here
                     </div>

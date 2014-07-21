@@ -19,6 +19,9 @@ namespace Liberty.Data
             options.LoadWith<Publication>(e => e.GenrePublications);
             options.LoadWith<Publication>(e => e.AuthorPublications);
 
+            options.LoadWith<AuthorPublication>(e => e.Author);
+            options.LoadWith<GenrePublication>(e => e.Genre);
+
             _dataContext.LoadOptions = options;
         }
 

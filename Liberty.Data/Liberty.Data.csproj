@@ -68,8 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Author.cs" />
+    <Compile Include="AuthorPublication.cs" />
     <Compile Include="DomainContext.cs" />
     <Compile Include="Genre.cs" />
+    <Compile Include="GenrePublication.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="LibraryModel.designer.cs">
       <AutoGen>True</AutoGen>

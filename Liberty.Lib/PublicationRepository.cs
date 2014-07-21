@@ -38,7 +38,7 @@ namespace Liberty.Lib
             }
 
 
-            pubs.ForEach(e => Hydrate(e));
+            //pubs.ForEach(e => Hydrate(e));
             return pubs;
         }
 
@@ -61,7 +61,6 @@ namespace Liberty.Lib
             //if (publication.BookId > 0)
             //    publicationToUpdate  
 
-
             using (var t = new TransactionScope())
             {
                 try
@@ -70,20 +69,16 @@ namespace Liberty.Lib
                     //var pub = _dataContext.SavePublication(publication);
                     
                     //update the authors
-                    foreach (var a in publication.Authors)
+                    foreach (var a in publication.AuthorPublications)
                     {
                         if (a.Delete && publication.AuthorPublications.Any(e => e.AuthorId == a.AuthorId))
                             publication.AuthorPublications.Remove(publication.AuthorPublications.First(e => e.AuthorId == a.AuthorId));
-                        else if (!a.Delete && !publication.AuthorPublications.Any(e => e.AuthorId == a.AuthorId))
-                            publication.AuthorPublications.Add(new AuthorPublication() { AuthorId = a.AuthorId });
                     }
 
-                    foreach (var g in publication.Genres)
+                    foreach (var g in publication.GenrePublications)
                     {
                         if (g.Delete && publication.BookId > 0)
-                            publication.GenrePublications.Remove(publication.GenrePublications.First(e => e.GenreId == g.Id));
-                        else if (!g.Delete && !publication.GenrePublications.Any(e => e.GenreId == g.Id))
-                            publication.GenrePublications.Add(new GenrePublication() { GenreId = g.Id });
+                            publication.GenrePublications.Remove(publication.GenrePublications.First(e => e.GenreId == g.GenreId));
                     }
 
                     var newPub = _dataContext.SavePublication(publication);

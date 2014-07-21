@@ -7,7 +7,7 @@
             @Html.DisplayNameFor(model => model.Title)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Authors)
+            Authors
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ISBN)
@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.Synopsis)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genres)
+            Genres
         </th>
         <th>&nbsp;</th>
     </tr>
@@ -27,7 +27,7 @@
             @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Authors)
+            @Html.DisplayFor(modelItem => item.AuthorPublications)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ISBN)
@@ -36,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.Synopsis)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Genres)
+            @Html.DisplayFor(modelItem => item.GenrePublications)
         </td>
         <td>
             @Ajax.ActionLink("Edit", "_editPublication", new { id = item.BookId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" })
