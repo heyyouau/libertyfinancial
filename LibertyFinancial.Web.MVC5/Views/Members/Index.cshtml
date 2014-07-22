@@ -4,4 +4,31 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Members</h2>
+
+<div class="row">
+    @using (Ajax.BeginForm("_ajaxMemberSearch", new AjaxOptions { UpdateTargetId = "memberList", InsertionMode = InsertionMode.Replace }))
+{
+    <div class="row">
+        <label class="col-sm-4">Search by Surname</label>
+        @Html.TextBoxFor(e => e.LastName)
+    </div>
+    <div class="row">
+        <label class="col-sm-4">Search by First Name</label>
+        @Html.TextBoxFor(e => e.FirstName)
+    </div>
+    <div class="row">
+        <label class="col-sm-4">Search by Contact Number</label>
+        @Html.TextBoxFor(e => e.ContactNumber)
+    </div>
+    <div class="row">
+        <button class="btn btn-Primary">Search</button>
+    </div>        
+}
+</div>
+<div class="row">
+    @Ajax.ActionLink("Add Member", "_ajaxSaveMember", null, new AjaxOptions { UpdateTargetId = "memberList", HttpMethod = "Get", InsertionMode = InsertionMode.Replace },  new { @class = "btn" })
+</div>
+<div class="row" id="memberList">
+
+</div>

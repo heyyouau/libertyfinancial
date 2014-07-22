@@ -8,5 +8,5 @@
         @Html.DisplayFor(e => e.AuthorFullName) 
         @Html.HiddenFor(e => e.Delete, new { id = "Authors_" + @Model.AuthorId + "_Delete" })
     </span>
-    <span class="col-sm-1 deletor">@Html.LinkToRemoveNestedForm("X", "aedit_" + Model.AuthorId, "Authors_" + @Model.AuthorId + "_Delete")</span>
+    <span class="col-sm-1 deletor">@Html.LinkToRemoveNestedForm("X", "aedit_" + Model.AuthorId, "AuthorPublications_" + @Model.AuthorId + "_Delete")</span>
 </div>

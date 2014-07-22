@@ -1,0 +1,24 @@
+﻿@model Liberty.Data.MemberCurrentBookBorrowing
+
+
+<tr>
+    <td>
+        @Html.DisplayFor(e => e.BorrowDate)
+    </td>
+    <td>
+        @Html.DisplayFor(e => e.DueDate)
+    </td>
+    <td>
+        @Html.DisplayFor(e => e.Title)
+    </td>
+    <td>
+        @Html.DisplayFor(e => e.ISBN)
+    </td>
+    <td>
+        @Html.DisplayFor(e=> e.AuthorFullName)
+    </td>
+    <td>
+        @Html.ActionLink("Return", "Return", new { borrowingId = Model.BorrowingId, memberId = Model.MemberId }) |
+    </td>
+</tr>
+

@@ -1,0 +1,60 @@
+﻿@model LibertyFinancial.Web.MVC5.Models.BorrowingModel
+
+<h2>Borrowing</h2>
+
+<div class="row">
+    <div class="row">
+        <label class="col-3-sm">Borrower</label>
+        @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
+    </div>
+    <div class="row">
+        <label class="col-3-sm">Current Books Out</label>
+    </div>
+    <div class="col=6-sm">
+        <table class="table">
+            <tr>
+                <th>
+                   Date Borrowed
+                </th>
+                <th>
+                    Date Due
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    ISBN
+                </th>
+                <th>
+                    Author
+                </th>
+                <th></th>
+            </tr>
+            @Html.DisplayFor(e => e.MemberCurrentBookBorrowing)
+        </table>
+    </div>
+</div>
+
+<div class="row">
+    @if (@Model.MemberCurrentBookBorrowing.Count >= @Model.Member.MaxBorrowings)
+    {
+        <div class="row">
+            <h3 class="col-12-sm error">You must return some books before borrowing more</h3>
+        </div>
+    }
+    else
+    {
+    <h4>Select Book</h4>
+
+    using (Ajax.BeginForm("_ajaxPublicationSearch", new {memberId = Model.Member.MemberId}, new AjaxOptions { UpdateTargetId = "publicationList", InsertionMode = InsertionMode.Replace }))
+    {
+        Html.RenderPartial("BookSearch", new LibertyFinancial.Web.MVC5.Models.PublicationSearchParameters());
+    }
+
+    
+    
+    <div id="publicationList"></div>
+}
+</div>
+
+

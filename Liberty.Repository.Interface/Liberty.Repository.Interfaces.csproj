@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="IAuthorSearchParams.cs" />
     <Compile Include="IAuthorsRepository.cs" />
+    <Compile Include="IBorrowingModel.cs" />
     <Compile Include="IBorrowerRepository.cs" />
     <Compile Include="ILogInModel.cs" />
     <Compile Include="IMemberRepository.cs" />

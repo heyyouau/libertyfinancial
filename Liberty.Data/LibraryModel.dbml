@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Liberty.Data.Store" Class="LibraryModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=.\..\LibertyFinanical.Web\app_data\Liberty.Data.Store.mdf;Integrated Security=True" SettingsObjectName="Liberty.Data.Properties.Settings" SettingsPropertyName="Liberty_Data_StoreConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=L:\dev.mckenziebryce\gitrepositories\libertyfinancial\LibertyFinancial.Web.MVC5\App_Data\Liberty.Data.Store.mdf;Integrated Security=True" SettingsObjectName="Liberty.Data.Properties.Settings" SettingsPropertyName="Liberty_Data_StoreConnectionString3" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Author" Member="Authors">
     <Type Name="Author">
       <Column Name="AuthorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -20,11 +20,13 @@
   </Table>
   <Table Name="dbo.Borrowing" Member="Borrowings">
     <Type Name="Borrowing">
-      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="EventDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BorrowDate" Storage="_EventDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="DueDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="Returned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BorrowingId" Type="System.Int32" DbType="INT" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="Member_Borrowing" Member="Member" ThisKey="MemberId" OtherKey="MemberId" Type="Member" IsForeignKey="true" />
       <Association Name="Publication_Borrowing" Member="Publication" ThisKey="BookId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
     </Type>
@@ -35,6 +37,7 @@
       <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="LastName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="MaxBorrowings" Type="System.Int32" DbType="INT" CanBeNull="false" />
       <Association Name="Member_Borrowing" Member="Borrowings" ThisKey="MemberId" OtherKey="MemberId" Type="Borrowing" />
     </Type>
   </Table>
@@ -59,16 +62,30 @@
       <Column Name="Title" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
       <Column Name="ISBN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Synopsis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Copies" Type="System.Int32" DbType="int" CanBeNull="false" />
       <Association Name="Publication_AuthorPublication" Member="AuthorPublications" ThisKey="BookId" OtherKey="PublicationId" Type="AuthorPublication" />
       <Association Name="Publication_Borrowing" Member="Borrowings" ThisKey="BookId" OtherKey="BookId" Type="Borrowing" />
       <Association Name="Publication_GenrePublication" Member="GenrePublications" ThisKey="BookId" OtherKey="PublicationId" Type="GenrePublication" />
     </Type>
   </Table>
-  <Table Name="dbo.vewGenresAndPublications" Member="vewGenresAndPublications">
-    <Type Name="vewGenresAndPublication">
-      <Column Name="PublicationId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="GenreName" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+  <Table Name="dbo.vewBookBorrowings" Member="BookBorrowingCounts">
+    <Type Name="BookBorrowingCount">
+      <Column Name="Copies" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="borrowed" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Available" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BookId" Type="System.Int32" DbType="INT" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMemberCurrentBookBorrowings" Member="MemberCurrentBookBorrowings">
+    <Type Name="MemberCurrentBookBorrowing">
+      <Column Name="BorrowDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="ISBN" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorFullName" Type="System.String" DbType="NVarChar(102) NOT NULL" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.Int32" DbType="INT" CanBeNull="false" />
+      <Column Name="BorrowingId" Type="System.Int32" DbType="INT" IsPrimaryKey="true" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

@@ -183,6 +183,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthorsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BorrowController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PublicationsController.cs" />
@@ -191,6 +192,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BorrowingModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -207,10 +209,12 @@
     <Content Include="App_Data\Liberty.Data.Store_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -244,11 +248,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\Publications.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\Genre.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\Publication.cshtml" />
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\Author.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\AuthorPublication.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\GenrePublication.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\Synopsis.cshtml" />
@@ -258,11 +260,19 @@
     <Content Include="Views\Publications\EditorTemplates\SelectableGenre.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\GenrePublication.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\AuthorPublication.cshtml" />
+    <Content Include="Views\Members\EditorTemplates\Member.cshtml" />
+    <Content Include="Views\Members\DisplayTemplates\Members.cshtml" />
+    <Content Include="Views\Borrow\Index.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\MemberCurrentBookBorrowing.cshtml" />
+    <Content Include="Views\Shared\BookSearch.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\Publications.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\AuthorPublication.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\GenrePublication.cshtml" />
+    <Content Include="Views\Borrow\EditorTemplates\Borrowing.cshtml" />
+    <Content Include="Views\Borrow\EditorTemplates\Member.cshtml" />
+    <Content Include="Views\Borrow\EditorTemplates\Publication.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Members\DisplayTemplates\" />
-    <Folder Include="Views\Members\EditTemplates\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

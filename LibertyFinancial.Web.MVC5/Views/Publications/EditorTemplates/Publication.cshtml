@@ -52,7 +52,12 @@
                     @Html.EditorFor(e => e.Synopsis, "Synopsis")
                 </div>
             </div>
-            
+            <div class="row">
+                <label class="col-lg-2">Copies Owned</label>
+                <div class="col-lg-10">
+                    @Html.EditorFor(e => e.Copies)
+                </div>
+            </div>
             <div class="row">
                 <input type="submit" class="btn btn-primary" value="Save" />
             </div>

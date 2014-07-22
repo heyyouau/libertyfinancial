@@ -22,6 +22,9 @@ namespace Liberty.Data
             options.LoadWith<AuthorPublication>(e => e.Author);
             options.LoadWith<GenrePublication>(e => e.Genre);
 
+            options.LoadWith<Member>(e => e.Borrowings);
+
+
             _dataContext.LoadOptions = options;
         }
 
@@ -151,6 +154,7 @@ namespace Liberty.Data
 
         public Publication SavePublication(Publication publication)
         {
+           
             var pub = GetPublication(publication.BookId);
 
             if (pub == null)
@@ -159,12 +163,63 @@ namespace Liberty.Data
                 _dataContext.Publications.InsertOnSubmit(pub);
             }
 
-            pub.AuthorPublications = publication.AuthorPublications;
-            pub.GenrePublications = publication.GenrePublications;
+            //delete ap's marked for deletion from the datacontext
+            foreach (var ap in publication.AuthorPublications.Where(e => e.Delete))
+            {
+                DeletePublicationAuthor(ap.AuthorId, ap.PublicationId);
+            }
+
+            //add any new ap's to the datacontext
+            foreach (var ap in publication.AuthorPublications.Where(e => !(pub.AuthorPublications.Contains(e))))
+            {
+                AddAuthorPublication(GetAuthor( ap.AuthorId), pub);
+            }
+
+
+            //delete any gp's marked for deletion
+            foreach (var ap in publication.GenrePublications.Where(e => e.Delete))
+            {
+                DeletePublicationGenre(ap.GenreId, ap.PublicationId);
+            }
+
+
+
+            //add any new gp's not yet in the data context
+            foreach (var ap in publication.GenrePublications.Where(e => !(pub.GenrePublications.Contains(e))))
+            {
+                AddGenrePublication(GetGenre(ap.GenreId), pub);
+            }
+
             pub.Title = publication.Title;
             pub.ISBN = publication.ISBN;
+            pub.Synopsis = publication.Synopsis;
+            pub.Copies = publication.Copies;
 
             return pub;
+        }
+
+        private void AddGenrePublication(Genre genre, Publication publication)
+        {
+            var gp = _dataContext.GenrePublications.FirstOrDefault(e => e.Genre == genre && e.Publication == publication);
+
+            if (gp == null)
+            {
+                gp = new GenrePublication() { Genre = genre, Publication = publication };
+                _dataContext.GenrePublications.InsertOnSubmit(gp);
+            }
+
+        }
+
+        private void AddAuthorPublication(Author author, Publication publication)
+        {
+            var ap = _dataContext.AuthorPublications.FirstOrDefault(e => e.Author == author && e.Publication == publication);
+
+            if (ap == null)
+            {
+                ap = new AuthorPublication() { Author = author, Publication = publication};
+                _dataContext.AuthorPublications.InsertOnSubmit(ap);
+            }
+                
         }
 
         public IQueryable<Publication> GetPublications()
@@ -186,7 +241,11 @@ namespace Liberty.Data
                     select genre);
         }
 
-
+        //public void DeletePublicationAuthor(AuthorPublication ap)
+        //{
+        //    var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
+        //    _dataContext.AuthorPublications.DeleteOnSubmit(ap);
+        //}
         public void DeletePublicationAuthor(int authorid, int publicationId)
         {
             var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
@@ -217,6 +276,41 @@ namespace Liberty.Data
 
             if (t == null)
                 _dataContext.GenrePublications.InsertOnSubmit(new GenrePublication() { GenreId = genreid, PublicationId = publicationId});
+        }
+
+
+        public Genre GetGenre(int genreId)
+        {
+            return _dataContext.Genres.FirstOrDefault(e => e.Id == genreId);
+        }
+
+
+        public IQueryable<MemberCurrentBookBorrowing> CurrentBookBorrowings
+        {
+            get
+            {
+                return _dataContext.MemberCurrentBookBorrowings;
+            }
+        }
+        public IQueryable<BookBorrowingCount> BookBorrowingCount
+        {
+            get
+            {
+                return _dataContext.BookBorrowingCounts;
+            }
+        }
+
+        public void BorrowBook(int memberId, int publicationId, DateTime eventDate, DateTime dueDate)
+        {
+            _dataContext.Borrowings.InsertOnSubmit(new Borrowing() { BookId = publicationId, BorrowDate = eventDate, DueDate = dueDate, MemberId = memberId, Returned = false });
+        }
+
+        public IQueryable<Borrowing> GetBorrowings
+        {
+            get
+            {
+                return _dataContext.Borrowings;
+            }
         }
     }
 }

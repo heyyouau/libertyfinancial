@@ -41,7 +41,7 @@ namespace Liberty.Data.Interfaces
 
         IQueryable<Genre> GetGenres();
 
-
+        Genre GetGenre(int genreId);
 
         #endregion
 
@@ -51,12 +51,24 @@ namespace Liberty.Data.Interfaces
         IQueryable<Genre> GetGenresByPublication(int publicationId);
         IQueryable<Author> GetAuthorsByPublication(int publicationId);
 
-        void DeletePublicationAuthor(int p1, int p2);
+        void DeletePublicationAuthor(int authorId, int publicationId);
+        
 
         void SavePublicationAuthor(int p1, int p2);
 
         void DeletePublicationGenre(int p1, int p2);
 
         void SavePublicationGenre(int p1, int p2);
+
+        #region views
+
+        IQueryable<MemberCurrentBookBorrowing> CurrentBookBorrowings { get; }
+        IQueryable<BookBorrowingCount> BookBorrowingCount { get; }
+
+        #endregion
+
+        void BorrowBook(int memberId, int publicationId, DateTime eventDate, DateTime dueDate);
+
+        IQueryable<Borrowing> GetBorrowings { get; }
     }
 }

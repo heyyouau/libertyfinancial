@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Liberty.Data.Publication>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISBN)
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Copies)
+        </th>
+        <th>
+            Available
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISBN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorPublications)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenrePublications)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Copies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookBorrowing.Available)
+        </td>
+        <td>
+            @if (item.AvailableForLoan) 
+            { 
+                <button onclick="confirmBorrowing(@ViewBag.MemberId, @item.BookId)" >Borrow</button>
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+
+<div id="confPopup" class="modal fade">
+    <div class="modal-dialog">
+    <div class="modal-content">
+      
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog  -->
+</div>
+
+
+    
+<script type="text/javascript">
+    function confirmBorrowing(memberId, publicationId)
+    {
+        var url = '/Borrow/ConfirmBorrow?memberId=' + memberId + '&publicationId=' + publicationId;
+        $("#confPopup").modal({ remote: url });
+       // $('.datepicker').datepicker();
+        $("#confPopup").modal('show');
+    }
+</script>

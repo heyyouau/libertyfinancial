@@ -1,0 +1,17 @@
+﻿@model LibertyFinancial.Web.MVC5.Models.PublicationSearchParameters
+
+<div class="row">
+    <label class="col-sm-4">Search by Author Surname</label>
+    @Html.TextBoxFor(e => e.AuthorLastName)
+</div>
+<div class="row">
+    <label class="col-sm-4">Search by Book Title</label>
+    @Html.TextBoxFor(e => e.BookTitle)
+</div>
+<div class="row">
+    <label class="col-sm-4">Search by ISBN</label>
+    @Html.TextBoxFor(e => e.ISBN)
+</div>
+<div class="row">
+    <button class="btn btn-Primary">Search</button>
+</div>

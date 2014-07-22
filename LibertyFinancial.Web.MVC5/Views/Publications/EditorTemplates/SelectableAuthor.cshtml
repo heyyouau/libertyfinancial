@@ -1,11 +1,11 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.SelectableAuthor
 
 <div class="row author" id="aeselect_@Model.AuthorId" draggable="true" ondragstart="startDrag(event)" data-modelid="@Model.AuthorId">
-    <input name="Authors[#counter#].AuthorId" id="Authors_#counter#__AuthorId" type="hidden" value="@Model.AuthorId" data-val-required="The AuthorId field is required." data-val-number="The field AuthorId must be a number." data-val="true">
+    <input name="AuthorPublications[#counter#].AuthorId" id="AuthorPublications_#counter#__AuthorId" type="hidden" value="@Model.AuthorId" data-val-required="The AuthorId field is required." data-val-number="The field AuthorId must be a number." data-val="true">
     <span class="col-sm-11">
         @Html.DisplayFor(e => e.AuthorName)
         <input type='hidden' value='False' data-val-required='The Delete field is required.' data-val='true' name='Authors[#counter#].Delete' id="Authors_@(Model.AuthorId)_Delete" />
     </span>
-    <span class="col-sm-1 deletor"><a onclick="removeNestedForm(this, 'aeselect_@Model.AuthorId', 'Authors_@(Model.AuthorId)_Delete'); return false;" href='#'>X</a></span>
+    <span class="col-sm-1 deletor"><a onclick="removeNestedForm(this, 'aeselect_@Model.AuthorId', 'AuthorPublications_@(Model.AuthorId)_Delete'); return false;" href='#'>X</a></span>
 </div>
 

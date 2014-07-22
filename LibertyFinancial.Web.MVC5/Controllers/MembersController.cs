@@ -1,4 +1,5 @@
-﻿using Liberty.Data.Interfaces;
+﻿using Liberty.Data;
+using Liberty.Data.Interfaces;
 using Liberty.Repository.Interface;
 using LibertyFinancial.Web.MVC5.Models;
 using System;
@@ -22,6 +23,31 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         public ActionResult Index()
         {
             return View(new MemberSearchTerms());
+        }
+
+        public ActionResult _ajaxMemberSearch(MemberSearchTerms parameters)
+        {
+            return PartialView("DisplayTemplates/Members", _memberRepository.GetMembers(parameters));
+        }
+
+        public ActionResult _ajaxSaveMember()
+        {
+            return PartialView("EditorTemplates/Member", new Member());
+        }
+
+
+        [HttpPost]
+        public ActionResult _ajaxSaveMember(Member member)
+        {
+            var m = _memberRepository.SaveMember(member);
+            return PartialView("EditorTemplates/Member", m);
+        }
+
+        [HttpGet]
+        public ActionResult _editMember(int id)
+        {
+            var model = _memberRepository.GetMember(id);
+            return PartialView("EditorTemplates/Member", model);
         }
 
     }

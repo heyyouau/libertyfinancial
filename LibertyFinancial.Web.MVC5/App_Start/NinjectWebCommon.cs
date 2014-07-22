@@ -70,6 +70,7 @@ namespace LibertyFinancial.Web.MVC5.App_Start
             kernel.Bind<ISessionContext>().To<SessionContext>().InSingletonScope();
             kernel.Bind<IMemberRepository>().To<MemberRepository>().InSingletonScope();
             kernel.Bind<IPublicationRepository>().To<PublicationRepository>().InSingletonScope();
+            kernel.Bind<IBorrowerRepository>().To<BorrowingRepository>().InSingletonScope();
         }        
     }
 }

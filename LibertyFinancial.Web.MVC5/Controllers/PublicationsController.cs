@@ -35,10 +35,6 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         }
 
 
-        public ActionResult _ajaxAddGenre()
-        {
-            return PartialView("EditTemplates/Genre", _publicationRepository.GetGenres());
-        }
 
         [HttpGet]
         public ActionResult _ajaxSavePublication()

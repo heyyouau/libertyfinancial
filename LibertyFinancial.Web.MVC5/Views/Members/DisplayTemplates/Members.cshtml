@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Liberty.Data.Member>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Ajax.ActionLink("Edit", "_editMember", new { id = item.MemberId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "memberList" })<br />
+            @Html.ActionLink("Borrow", "Index", "Borrow", new { memberId = item.MemberId }, null)
+        </td>
+    </tr>
+}
+
+</table>

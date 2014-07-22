@@ -42,49 +42,18 @@ namespace Liberty.Lib
             return pubs;
         }
 
-        private void Hydrate(Publication p)
-        {
-            p.Genres = _dataContext.GetGenresByPublication(p.BookId).ToList();
-            p.Authors = _dataContext.GetAuthorsByPublication(p.BookId).ToList();
-        }
-
-        public Publication GetPublication(int publicationId)
-        {
-            var pub = _dataContext.GetPublication(publicationId);
-            Hydrate(pub);
-            return pub;
-        }
+       
 
         public Publication SavePublication(Publication publication)
         {
-            //var publicationToUpdate = _dataContext.GetPublication(publication.BookId);
-            //if (publication.BookId > 0)
-            //    publicationToUpdate  
 
             using (var t = new TransactionScope())
             {
                 try
                 {
-                    //save the publication first and then update the many to many collections
-                    //var pub = _dataContext.SavePublication(publication);
-                    
-                    //update the authors
-                    foreach (var a in publication.AuthorPublications)
-                    {
-                        if (a.Delete && publication.AuthorPublications.Any(e => e.AuthorId == a.AuthorId))
-                            publication.AuthorPublications.Remove(publication.AuthorPublications.First(e => e.AuthorId == a.AuthorId));
-                    }
-
-                    foreach (var g in publication.GenrePublications)
-                    {
-                        if (g.Delete && publication.BookId > 0)
-                            publication.GenrePublications.Remove(publication.GenrePublications.First(e => e.GenreId == g.GenreId));
-                    }
-
                     var newPub = _dataContext.SavePublication(publication);
                     _dataContext.SaveChanges();
                     t.Complete();
-
                     return newPub;
                 }
                 catch (Exception ex)
@@ -92,13 +61,18 @@ namespace Liberty.Lib
                     throw ex;
                 }
             }
-
             
+        }
+
+
+        public Publication GetPublication(int publicationId)
+        {
+            return _dataContext.GetPublication(publicationId);
         }
 
         public List<Publication> GetPublicationsByAuthor(int authorId)
         {
-            throw new NotImplementedException();
+            return _dataContext.GetPublicationsByAuthorId(authorId).ToList();
         }
 
         public List<Genre> GetGenres()

@@ -20,9 +20,9 @@ namespace Liberty.Lib
 
         public List<Member> GetMembers(IMemberSearchTerms searchTerms)
         {
-            return _datacontext.GetMembers().Where( e => (e.FirstName.ToLower().Contains(searchTerms.FirstName.ToLower()) || string.IsNullOrWhiteSpace(e.FirstName)) 
-                && (e.LastName.ToLower().Contains(searchTerms.LastName.ToLower())) || (string.IsNullOrWhiteSpace(searchTerms.LastName))
-                && (e.ContactNumber == searchTerms.ContactNumber || string.IsNullOrWhiteSpace(searchTerms.ContactNumber))).ToList();
+            return _datacontext.GetMembers().Where( e => (e.FirstName.ToLower().Contains(searchTerms.FirstName.ToLower()) || e.FirstName == "") 
+                                                      && (e.LastName.ToLower().Contains(searchTerms.LastName.ToLower()) || searchTerms.LastName == "")
+                                                      && (e.ContactNumber == searchTerms.ContactNumber || searchTerms.ContactNumber == "")).ToList();
         }
 
         public Member GetMember(int memberId)
