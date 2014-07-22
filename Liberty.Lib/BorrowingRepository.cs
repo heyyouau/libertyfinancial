@@ -25,7 +25,7 @@ namespace Liberty.Lib
 
         public void BorrowBook(IBorrowingModel borrowingModel)
         {
-            _datacontext.BorrowBook(borrowingModel.Member.MemberId, borrowingModel.Publication.BookId, DateTime.Now, borrowingModel.BorrowingInformation.DueDate.Value);
+            _datacontext.BorrowBook(borrowingModel.Member.MemberId, borrowingModel.Publication.BookId, DateTime.Now, borrowingModel.DueDate);
         }
 
         public void ReturnBook(int borrowingId, DateTime returndate)

@@ -18,19 +18,6 @@
       <Association Name="Publication_AuthorPublication" Member="Publication" ThisKey="PublicationId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Borrowing" Member="Borrowings">
-    <Type Name="Borrowing">
-      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="BorrowDate" Storage="_EventDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="DueDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="Returned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ReturnedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="BorrowingId" Type="System.Int32" DbType="INT" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Member_Borrowing" Member="Member" ThisKey="MemberId" OtherKey="MemberId" Type="Member" IsForeignKey="true" />
-      <Association Name="Publication_Borrowing" Member="Publication" ThisKey="BookId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Member" Member="Members">
     <Type Name="Member">
       <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -64,8 +51,8 @@
       <Column Name="Synopsis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Copies" Type="System.Int32" DbType="int" CanBeNull="false" />
       <Association Name="Publication_AuthorPublication" Member="AuthorPublications" ThisKey="BookId" OtherKey="PublicationId" Type="AuthorPublication" />
-      <Association Name="Publication_Borrowing" Member="Borrowings" ThisKey="BookId" OtherKey="BookId" Type="Borrowing" />
       <Association Name="Publication_GenrePublication" Member="GenrePublications" ThisKey="BookId" OtherKey="PublicationId" Type="GenrePublication" />
+      <Association Name="Publication_Borrowing" Member="Borrowings" ThisKey="BookId" OtherKey="BookId" Type="Borrowing" />
     </Type>
   </Table>
   <Table Name="dbo.vewBookBorrowings" Member="BookBorrowingCounts">
@@ -86,6 +73,19 @@
       <Column Name="AuthorFullName" Type="System.String" DbType="NVarChar(102) NOT NULL" CanBeNull="false" />
       <Column Name="MemberId" Type="System.Int32" DbType="INT" CanBeNull="false" />
       <Column Name="BorrowingId" Type="System.Int32" DbType="INT" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Borrowing" Member="Borrowings">
+    <Type Name="Borrowing">
+      <Column Name="BorrowingId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MemberId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BorrowDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="ReturnedDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Returned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Member_Borrowing" Member="Member" ThisKey="MemberId" OtherKey="MemberId" Type="Member" IsForeignKey="true" />
+      <Association Name="Publication_Borrowing" Member="Publication" ThisKey="BookId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

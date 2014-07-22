@@ -32,17 +32,19 @@ namespace Liberty.Lib
 
         public Author GetAuthor(int authorId)
         {
-            throw new NotImplementedException();
+            return _context.GetAuthor(authorId);
         }
 
-        public Author GetAuthor(string firstname, string lastname)
-        {
-            throw new NotImplementedException();
-        }
+        //public Author GetAuthor(string firstname, string lastname)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public Author SaveAuthor(Author author)
         {
             return _context.SaveAuthor(author);
         }
+
+        
     }
 }

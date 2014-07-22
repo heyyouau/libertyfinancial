@@ -9,7 +9,6 @@ namespace Liberty.Repository.Interface
 {
     public interface IAuthorSearchParams
     {
-        Author CurrentAuthor { get; set; }
         string AuthorLastName { get; set; }
         string AuthorFirstName { get; set; }
     }

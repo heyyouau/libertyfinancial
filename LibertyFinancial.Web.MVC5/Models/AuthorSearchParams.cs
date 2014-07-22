@@ -11,33 +11,28 @@ namespace LibertyFinancial.Web.MVC5.Models
     {
 
         public AuthorSearchParams()
-        {
-            
+        {   
             AuthorFirstName = string.Empty;
             AuthorLastName = string.Empty;
         }
 
-        private Author _currentAuthor = new Author();
-
-        public AuthorSearchParams(Author currentAuthor):this()
+        private string _lastname;
+        
+        public string AuthorLastName 
         {
-            _currentAuthor = currentAuthor;
-        }
-        public string AuthorLastName { get; set; }
-
-        public Author CurrentAuthor
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return _lastname == null ? string.Empty : _lastname; }
             set
             {
-                throw new NotImplementedException();
+                _lastname = value;
             }
         }
 
-        public string AuthorFirstName { get; set; }
+        private string _firstname;
+        public string AuthorFirstName 
+        {
+            get { return _firstname == null ? string.Empty : _firstname; }
+            set { _firstname = value; }
+        }
         
     }
 }

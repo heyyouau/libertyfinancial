@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
+    [Authorize, NoCache]
     public class BorrowController : BaseController
     {
         private IBorrowerRepository _borrowerRepository;

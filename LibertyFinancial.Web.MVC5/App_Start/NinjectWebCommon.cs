@@ -65,12 +65,12 @@ namespace LibertyFinancial.Web.MVC5.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IDataContext>().To<DomainContext>().InSingletonScope();
-            kernel.Bind<IAuthorsRepository>().To<AuthorsRepository>().InSingletonScope();
-            kernel.Bind<ISessionContext>().To<SessionContext>().InSingletonScope();
-            kernel.Bind<IMemberRepository>().To<MemberRepository>().InSingletonScope();
-            kernel.Bind<IPublicationRepository>().To<PublicationRepository>().InSingletonScope();
-            kernel.Bind<IBorrowerRepository>().To<BorrowingRepository>().InSingletonScope();
+            kernel.Bind<IDataContext>().To<DomainContext>().InRequestScope();
+            kernel.Bind<IAuthorsRepository>().To<AuthorsRepository>().InRequestScope();
+            kernel.Bind<ISessionContext>().To<SessionContext>().InRequestScope();
+            kernel.Bind<IMemberRepository>().To<MemberRepository>().InRequestScope();
+            kernel.Bind<IPublicationRepository>().To<PublicationRepository>().InRequestScope();
+            kernel.Bind<IBorrowerRepository>().To<BorrowingRepository>().InRequestScope();
         }        
     }
 }

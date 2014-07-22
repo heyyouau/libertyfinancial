@@ -15,7 +15,7 @@ namespace Liberty.Repository.Interface
 
         Publication Publication { get; set; }
 
-        Borrowing BorrowingInformation { get; set; }
+        DateTime DueDate { get; set; }
 
         BookEventType EventType { get; set; }
     }

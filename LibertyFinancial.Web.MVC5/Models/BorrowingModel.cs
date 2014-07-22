@@ -1,4 +1,5 @@
 ﻿using Liberty.Data;
+using Liberty.Data.Validators;
 using Liberty.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -37,7 +38,9 @@ namespace LibertyFinancial.Web.MVC5.Models
 
         public Publication Publication { get; set; }
 
-        public Borrowing BorrowingInformation { get; set; }
+        //public Borrowing BorrowingInformation { get; set; }
+        [NotBeforeTodayValidator("Please enter a data that is not before today's date")]
+        public DateTime DueDate{ get; set; }
 
         public BookEventType EventType { get; set; }
     }

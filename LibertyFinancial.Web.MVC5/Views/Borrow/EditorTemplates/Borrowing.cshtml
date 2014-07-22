@@ -4,11 +4,13 @@
 
 @using (Html.BeginForm())
 {       
+    @Html.AntiForgeryToken()
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Confirmation</h4>
     </div>
     <div class="modal-body">
+        @Html.ValidationSummary()
             <div class="row">
                 <label class="col-3-sm">Borrower</label>
                 @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
@@ -25,7 +27,7 @@
         </div>
             <div class="row">
                 <label class="col-3-sm">Due Date</label>
-                @Html.TextBoxFor(e => e.BorrowingInformation.DueDate, new { @class = "datepicker" })
+                @Html.TextBoxFor(e => e.DueDate, new { @class = "datepicker" })
             </div>
     </div>
     <div class="modal-footer">

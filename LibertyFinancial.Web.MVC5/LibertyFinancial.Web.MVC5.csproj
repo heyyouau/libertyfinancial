@@ -243,7 +243,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Authors\DisplayTemplates\Authors.cshtml" />
-    <Content Include="Views\Authors\EditTemplates\Author.cshtml" />
+    <Content Include="Views\Authors\EditorTemplates\Author.cshtml" />
     <Content Include="Views\Authors\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [NoCache]
+    [Authorize, NoCache]
     public class PublicationsController : BaseController
     {
         private IPublicationRepository _publicationRepository;

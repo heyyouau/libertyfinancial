@@ -26,6 +26,7 @@ namespace Liberty.Data
 
 
             _dataContext.LoadOptions = options;
+
         }
 
         public void SaveChanges()

@@ -1,11 +1,11 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.SelectableGenre
 
 <div class="row genre" id="gselect_@Model.GenreID" draggable="true" ondragstart="startDrag(event)" data-modelid="@Model.GenreID">
-    <input name="Genres[#counter#].Id" id="Genres_#counter#__Id" type="hidden" value="3" data-val-required="The Id field is required." data-val-number="The field Id must be a number." data-val="true">
+    <input name="GenrePublications[#counter#].Id" id="GenrePublications_#counter#__Id" type="hidden" value="3" data-val-required="The Id field is required." data-val-number="The field Id must be a number." data-val="true">
     <span class="col-sm-11">
         @Html.DisplayFor(e => e.GenreName)
-        <input type='hidden' value='False' data-val-required='The Delete field is required.' data-val='true' name='Genres[#counter#].Delete' id="Genress_@(Model.GenreID)_Delete" />
+        <input type='hidden' value='False' data-val-required='The Delete field is required.' data-val='true' name='GenrePublications[#counter#].Delete' id="GenrePublications_@(Model.GenreID)_Delete" />
     </span>
-    <span class="col-sm-1 deletor"><a onclick="removeNestedForm(this, 'gselect_@Model.GenreID', 'Genres_@(Model.GenreID)_Delete'); return false;" href='#'>X</a></span>
+    <span class="col-sm-1 deletor"><a onclick="removeNestedForm(this, 'gselect_@Model.GenreID', 'GenrePublications_@(Model.GenreID)_Delete'); return false;" href='#'>X</a></span>
 </div>
 

@@ -7,10 +7,11 @@
         <label class="col-3-sm">Borrower</label>
         @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
     </div>
+    @if (Model.MemberCurrentBookBorrowing.Count > 0) { 
     <div class="row">
         <label class="col-3-sm">Current Books Out</label>
     </div>
-    <div class="col=6-sm">
+    <div class="col-6-sm">
         <table class="table">
             <tr>
                 <th>
@@ -33,6 +34,11 @@
             @Html.DisplayFor(e => e.MemberCurrentBookBorrowing)
         </table>
     </div>
+    }
+    else
+    {
+        <p class="alert">No Current books on loan</p>
+    }
 </div>
 
 <div class="row">

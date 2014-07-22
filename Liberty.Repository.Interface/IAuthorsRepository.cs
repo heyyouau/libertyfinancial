@@ -10,7 +10,7 @@ namespace Liberty.Repository.Interface
     public interface IAuthorsRepository
     {
         Author GetAuthor(int authorId);
-        Author GetAuthor(string firstname, string lastname);
+        //Author GetAuthor(string firstname, string lastname);
         Author SaveAuthor(Author author);
 
         List<Author> GetAuthors(IAuthorSearchParams searchTerms);

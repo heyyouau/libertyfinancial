@@ -29,9 +29,7 @@
             @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.AuthorId }) |
-            @Html.ActionLink("Show Books", "ShowBooksByAuthor", new { id=item.AuthorId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.AuthorId })
+            @Ajax.ActionLink("Edit", "Edit", new { id=item.AuthorId }, new AjaxOptions{InsertionMode = InsertionMode.Replace, UpdateTargetId = "authorList"})
         </td>
     </tr>
 }

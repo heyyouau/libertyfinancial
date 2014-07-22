@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize]
+    [Authorize, NoCache]
     public class AuthorsController : BaseController
     {
 
@@ -42,7 +42,7 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpGet]
         public ActionResult _ajaxSaveAuthor()
         {
-            return PartialView("EditTemplates/Author", new Author());
+            return PartialView("EditorTemplates/Author", new Author());
         }
 
 
@@ -52,11 +52,18 @@ namespace LibertyFinancial.Web.MVC5.Controllers
             if (ModelState.IsValid)
             {
                 var a = _authorsRepository.SaveAuthor(author);
-                return View("Index", new AuthorSearchParams(a));
+                return View("Index", new AuthorSearchParams() { AuthorFirstName = author.AuthorFirstName, AuthorLastName = author.AuthorLastName });
             }
             else
                 return View("Index", new AuthorSearchParams());
             
         }
+
+
+        public ActionResult Edit(int id)
+        {
+            return PartialView("EditorTemplates/Author", _authorsRepository.GetAuthor(id));
+        }
+
     }
 }
