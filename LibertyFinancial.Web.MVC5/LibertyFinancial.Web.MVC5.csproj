@@ -187,6 +187,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PublicationsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Extensions\NoCache.cs" />
     <Compile Include="Global.asax.cs">
@@ -271,6 +272,8 @@
     <Content Include="Views\Borrow\EditorTemplates\Borrowing.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Member.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Publication.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\DisplayTemplate\MemberCurrenytBorrowing.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

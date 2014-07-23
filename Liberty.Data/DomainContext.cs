@@ -106,6 +106,7 @@ namespace Liberty.Data
             nm.FirstName = member.FirstName;
             nm.LastName = member.LastName;
             nm.ContactNumber = member.ContactNumber;
+            nm.MaxBorrowings = member.MaxBorrowings;
 
             return nm;
         }

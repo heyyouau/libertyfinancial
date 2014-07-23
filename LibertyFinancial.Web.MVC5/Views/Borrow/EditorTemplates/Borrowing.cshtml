@@ -28,6 +28,7 @@
             <div class="row">
                 <label class="col-3-sm">Due Date</label>
                 @Html.TextBoxFor(e => e.DueDate, new { @class = "datepicker" })
+                @Html.ValidationMessageFor(e => e.DueDate)
             </div>
     </div>
     <div class="modal-footer">

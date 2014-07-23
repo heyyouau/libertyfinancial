@@ -71,6 +71,7 @@ namespace LibertyFinancial.Web.MVC5.App_Start
             kernel.Bind<IMemberRepository>().To<MemberRepository>().InRequestScope();
             kernel.Bind<IPublicationRepository>().To<PublicationRepository>().InRequestScope();
             kernel.Bind<IBorrowerRepository>().To<BorrowingRepository>().InRequestScope();
+            kernel.Bind<IReportsRepository>().To<ReportsRepository>().InRequestScope();
         }        
     }
 }

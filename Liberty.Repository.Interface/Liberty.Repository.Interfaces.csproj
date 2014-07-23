@@ -57,6 +57,7 @@
     <Compile Include="IMemberSearchTerms.cs" />
     <Compile Include="IPublicationRepository.cs" />
     <Compile Include="IPublicationSearchParams.cs" />
+    <Compile Include="IReportsRepository.cs" />
     <Compile Include="ISessionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

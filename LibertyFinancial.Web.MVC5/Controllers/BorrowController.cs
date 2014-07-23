@@ -46,15 +46,16 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpPost]
         public ActionResult ConfirmBorrow(BorrowingModel model)
         {
-            _borrowerRepository.BorrowBook(model);
-            return RedirectToAction("Index", new { memberId = model.Member.MemberId });
+            if (ModelState.IsValid)
+            {
+                _borrowerRepository.BorrowBook(model);
+                return RedirectToAction("Index", new { memberId = model.Member.MemberId });
+            }
+            else
+            {
+                return PartialView("EditorTemplates/Borrowing", model);
+            }
         }
-
-        //public ActionResult Borrow(BorrowingModel model)
-        //{
-        //    _borrowerRepository.BorrowBook(model);
-        //    return RedirectToAction("Index", new { memberId = model.Member.MemberId });
-        //}
 
 
         public ActionResult _ajaxPublicationSearch(PublicationSearchParameters searchParameters, int memberId)

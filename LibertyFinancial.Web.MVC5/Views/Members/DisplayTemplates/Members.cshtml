@@ -1,8 +1,5 @@
 ﻿@model IEnumerable<Liberty.Data.Member>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -13,6 +10,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MaxBorrowings)
         </th>
         <th></th>
     </tr>
@@ -27,6 +27,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ContactNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaxBorrowings)
         </td>
         <td>
             @Ajax.ActionLink("Edit", "_editMember", new { id = item.MemberId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "memberList" })<br />

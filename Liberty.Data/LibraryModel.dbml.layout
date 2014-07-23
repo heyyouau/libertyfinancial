@@ -14,7 +14,7 @@
         <elementListCompartment Id="f5449c79-3b3b-4d3b-af77-b0710c225550" absoluteBounds="1.8900000000000001, 4.335, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.1875 : 2.20359537760417); (2.1875 : 3.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.1875 : 2.20359537760417); (2.1875 : 3.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LibraryModelDataContext/Author/Author_AuthorPublication" />
       <nodes>
         <classShapeMoniker Id="4286c417-083a-4fb3-ae88-2eaa11d8168d" />
@@ -84,14 +84,14 @@
         <elementListCompartment Id="6708b72b-e37d-433f-a38e-54fdcc6104c5" absoluteBounds="7.1400000000000006, 1.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.8125 : 4); (7.8125 : 3.03049967447917)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.8125 : 4); (7.8125 : 3.03049967447917)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LibraryModelDataContext/Member/Member_Borrowing" />
       <nodes>
         <classShapeMoniker Id="3956b109-d662-4827-a9ad-cc04c56f9d51" />
         <classShapeMoniker Id="47fc1699-bba5-4c1d-b05d-5b2776939384" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.375 : 1.57294840494792); (7.125 : 1.57294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.375 : 1.57294840494792); (7.125 : 1.57294840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/LibraryModelDataContext/Publication/Publication_Borrowing" />
       <nodes>
         <classShapeMoniker Id="1602d5a1-b920-4fec-a62c-b596cdf42175" />
