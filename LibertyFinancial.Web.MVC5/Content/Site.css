@@ -76,3 +76,7 @@ textarea {
     margin-left: 0px;
     margin-right: 0px;
 }
+
+.contentPanel .row{
+      margin-left: 0px;
+}

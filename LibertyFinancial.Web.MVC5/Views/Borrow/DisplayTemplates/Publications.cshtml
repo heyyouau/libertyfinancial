@@ -12,9 +12,6 @@
             Author
         </th>
         <th>
-            Genre
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Copies)
         </th>
         <th>
@@ -35,9 +32,6 @@
             @Html.DisplayFor(modelItem => item.AuthorPublications)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GenrePublications)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Copies)
         </td>
         <td>
@@ -46,13 +40,15 @@
         <td>
             @if (item.AvailableForLoan) 
             { 
-                <button onclick="confirmBorrowing(@ViewBag.MemberId, @item.BookId)" >Borrow</button>
+                @Ajax.ActionLink("Borrow", "ConfirmBorrow", new { memberId = ViewBag.MemberId, publicationId = item.BookId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" })
             }
         </td>
     </tr>
 }
 
 </table>
+
+
 
 
 <div id="confPopup" class="modal fade">
@@ -66,7 +62,7 @@
 
 
     
-<script type="text/javascript">
+@*<script type="text/javascript">
     function confirmBorrowing(memberId, publicationId)
     {
         var url = '/Borrow/ConfirmBorrow?memberId=' + memberId + '&publicationId=' + publicationId;
@@ -74,4 +70,4 @@
        // $('.datepicker').datepicker();
         $("#confPopup").modal('show');
     }
-</script>
+</script>*@

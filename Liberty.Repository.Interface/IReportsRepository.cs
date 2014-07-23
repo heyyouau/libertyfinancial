@@ -9,6 +9,6 @@ namespace Liberty.Repository.Interface
 {
     public interface IReportsRepository
     {
-        List<MemberCurrentBookBorrowing> GetOverDueBooks(int daysOverDue);
+        List<MemberCurrentBookBorrowingsWithName> GetOverDueBooks(int daysOverDue);
     }
 }

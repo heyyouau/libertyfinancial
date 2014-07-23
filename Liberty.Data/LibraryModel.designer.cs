@@ -39,12 +39,6 @@ namespace Liberty.Data
     partial void InsertMember(Member instance);
     partial void UpdateMember(Member instance);
     partial void DeleteMember(Member instance);
-    partial void InsertGenrePublication(GenrePublication instance);
-    partial void UpdateGenrePublication(GenrePublication instance);
-    partial void DeleteGenrePublication(GenrePublication instance);
-    partial void InsertGenre(Genre instance);
-    partial void UpdateGenre(Genre instance);
-    partial void DeleteGenre(Genre instance);
     partial void InsertPublication(Publication instance);
     partial void UpdatePublication(Publication instance);
     partial void DeletePublication(Publication instance);
@@ -60,7 +54,7 @@ namespace Liberty.Data
     #endregion
 		
 		public LibraryModelDataContext() : 
-				base(global::Liberty.Data.Properties.Settings.Default.Liberty_Data_StoreConnectionString, mappingSource)
+				base(global::Liberty.Data.Properties.Settings.Default.Liberty_Data_StoreConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -113,22 +107,6 @@ namespace Liberty.Data
 			}
 		}
 		
-		public System.Data.Linq.Table<GenrePublication> GenrePublications
-		{
-			get
-			{
-				return this.GetTable<GenrePublication>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Genre> Genres
-		{
-			get
-			{
-				return this.GetTable<Genre>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Publication> Publications
 		{
 			get
@@ -158,6 +136,14 @@ namespace Liberty.Data
 			get
 			{
 				return this.GetTable<Borrowing>();
+			}
+		}
+		
+		public System.Data.Linq.Table<MemberCurrentBookBorrowingsWithName> MemberCurrentBookBorrowingsWithNames
+		{
+			get
+			{
+				return this.GetTable<MemberCurrentBookBorrowingsWithName>();
 			}
 		}
 	}
@@ -702,288 +688,6 @@ namespace Liberty.Data
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GenrePublication")]
-	public partial class GenrePublication : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _GenreId;
-		
-		private int _PublicationId;
-		
-		private EntityRef<Genre> _Genre;
-		
-		private EntityRef<Publication> _Publication;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnGenreIdChanging(int value);
-    partial void OnGenreIdChanged();
-    partial void OnPublicationIdChanging(int value);
-    partial void OnPublicationIdChanged();
-    #endregion
-		
-		public GenrePublication()
-		{
-			this._Genre = default(EntityRef<Genre>);
-			this._Publication = default(EntityRef<Publication>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenreId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int GenreId
-		{
-			get
-			{
-				return this._GenreId;
-			}
-			set
-			{
-				if ((this._GenreId != value))
-				{
-					if (this._Genre.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGenreIdChanging(value);
-					this.SendPropertyChanging();
-					this._GenreId = value;
-					this.SendPropertyChanged("GenreId");
-					this.OnGenreIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PublicationId", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int PublicationId
-		{
-			get
-			{
-				return this._PublicationId;
-			}
-			set
-			{
-				if ((this._PublicationId != value))
-				{
-					if (this._Publication.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPublicationIdChanging(value);
-					this.SendPropertyChanging();
-					this._PublicationId = value;
-					this.SendPropertyChanged("PublicationId");
-					this.OnPublicationIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genre_GenrePublication", Storage="_Genre", ThisKey="GenreId", OtherKey="Id", IsForeignKey=true)]
-		public Genre Genre
-		{
-			get
-			{
-				return this._Genre.Entity;
-			}
-			set
-			{
-				Genre previousValue = this._Genre.Entity;
-				if (((previousValue != value) 
-							|| (this._Genre.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Genre.Entity = null;
-						previousValue.GenrePublications.Remove(this);
-					}
-					this._Genre.Entity = value;
-					if ((value != null))
-					{
-						value.GenrePublications.Add(this);
-						this._GenreId = value.Id;
-					}
-					else
-					{
-						this._GenreId = default(int);
-					}
-					this.SendPropertyChanged("Genre");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publication_GenrePublication", Storage="_Publication", ThisKey="PublicationId", OtherKey="BookId", IsForeignKey=true)]
-		public Publication Publication
-		{
-			get
-			{
-				return this._Publication.Entity;
-			}
-			set
-			{
-				Publication previousValue = this._Publication.Entity;
-				if (((previousValue != value) 
-							|| (this._Publication.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Publication.Entity = null;
-						previousValue.GenrePublications.Remove(this);
-					}
-					this._Publication.Entity = value;
-					if ((value != null))
-					{
-						value.GenrePublications.Add(this);
-						this._PublicationId = value.BookId;
-					}
-					else
-					{
-						this._PublicationId = default(int);
-					}
-					this.SendPropertyChanged("Publication");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Genre")]
-	public partial class Genre : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _GenreName;
-		
-		private EntitySet<GenrePublication> _GenrePublications;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnGenreNameChanging(string value);
-    partial void OnGenreNameChanged();
-    #endregion
-		
-		public Genre()
-		{
-			this._GenrePublications = new EntitySet<GenrePublication>(new Action<GenrePublication>(this.attach_GenrePublications), new Action<GenrePublication>(this.detach_GenrePublications));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenreName", DbType="NVarChar(32) NOT NULL", CanBeNull=false)]
-		public string GenreName
-		{
-			get
-			{
-				return this._GenreName;
-			}
-			set
-			{
-				if ((this._GenreName != value))
-				{
-					this.OnGenreNameChanging(value);
-					this.SendPropertyChanging();
-					this._GenreName = value;
-					this.SendPropertyChanged("GenreName");
-					this.OnGenreNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Genre_GenrePublication", Storage="_GenrePublications", ThisKey="Id", OtherKey="GenreId")]
-		public EntitySet<GenrePublication> GenrePublications
-		{
-			get
-			{
-				return this._GenrePublications;
-			}
-			set
-			{
-				this._GenrePublications.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_GenrePublications(GenrePublication entity)
-		{
-			this.SendPropertyChanging();
-			entity.Genre = this;
-		}
-		
-		private void detach_GenrePublications(GenrePublication entity)
-		{
-			this.SendPropertyChanging();
-			entity.Genre = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Publication")]
 	public partial class Publication : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1001,8 +705,6 @@ namespace Liberty.Data
 		private int _Copies;
 		
 		private EntitySet<AuthorPublication> _AuthorPublications;
-		
-		private EntitySet<GenrePublication> _GenrePublications;
 		
 		private EntitySet<Borrowing> _Borrowings;
 		
@@ -1025,7 +727,6 @@ namespace Liberty.Data
 		public Publication()
 		{
 			this._AuthorPublications = new EntitySet<AuthorPublication>(new Action<AuthorPublication>(this.attach_AuthorPublications), new Action<AuthorPublication>(this.detach_AuthorPublications));
-			this._GenrePublications = new EntitySet<GenrePublication>(new Action<GenrePublication>(this.attach_GenrePublications), new Action<GenrePublication>(this.detach_GenrePublications));
 			this._Borrowings = new EntitySet<Borrowing>(new Action<Borrowing>(this.attach_Borrowings), new Action<Borrowing>(this.detach_Borrowings));
 			OnCreated();
 		}
@@ -1143,19 +844,6 @@ namespace Liberty.Data
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publication_GenrePublication", Storage="_GenrePublications", ThisKey="BookId", OtherKey="PublicationId")]
-		public EntitySet<GenrePublication> GenrePublications
-		{
-			get
-			{
-				return this._GenrePublications;
-			}
-			set
-			{
-				this._GenrePublications.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Publication_Borrowing", Storage="_Borrowings", ThisKey="BookId", OtherKey="BookId")]
 		public EntitySet<Borrowing> Borrowings
 		{
@@ -1196,18 +884,6 @@ namespace Liberty.Data
 		}
 		
 		private void detach_AuthorPublications(AuthorPublication entity)
-		{
-			this.SendPropertyChanging();
-			entity.Publication = null;
-		}
-		
-		private void attach_GenrePublications(GenrePublication entity)
-		{
-			this.SendPropertyChanging();
-			entity.Publication = this;
-		}
-		
-		private void detach_GenrePublications(GenrePublication entity)
 		{
 			this.SendPropertyChanging();
 			entity.Publication = null;
@@ -1874,6 +1550,123 @@ namespace Liberty.Data
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vewMemberCurrentBookBorrowingsWithName")]
+	public partial class MemberCurrentBookBorrowingsWithName
+	{
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _ContactNumber;
+		
+		private string _Title;
+		
+		private string _AuthorFullName;
+		
+		private System.DateTime _DueDate;
+		
+		public MemberCurrentBookBorrowingsWithName()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactNumber", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string ContactNumber
+		{
+			get
+			{
+				return this._ContactNumber;
+			}
+			set
+			{
+				if ((this._ContactNumber != value))
+				{
+					this._ContactNumber = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(1024) NOT NULL", CanBeNull=false)]
+		public string Title
+		{
+			get
+			{
+				return this._Title;
+			}
+			set
+			{
+				if ((this._Title != value))
+				{
+					this._Title = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuthorFullName", DbType="NVarChar(MAX)")]
+		public string AuthorFullName
+		{
+			get
+			{
+				return this._AuthorFullName;
+			}
+			set
+			{
+				if ((this._AuthorFullName != value))
+				{
+					this._AuthorFullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DueDate", DbType="Date NOT NULL")]
+		public System.DateTime DueDate
+		{
+			get
+			{
+				return this._DueDate;
+			}
+			set
+			{
+				if ((this._DueDate != value))
+				{
+					this._DueDate = value;
+				}
 			}
 		}
 	}

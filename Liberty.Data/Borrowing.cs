@@ -1,6 +1,7 @@
 ﻿using Liberty.Data.Validators;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -15,9 +16,14 @@ namespace Liberty.Data
 
     public class BorrowingMetadata
     {
-        [Required(ErrorMessage="Please enter the due date"), NotBeforeTodayValidator("The due date must be after today")]
-        public DateTime DueDate { get; set; }
+        
+        public BorrowingMetadata()
+        {
 
+        }
+
+        [Required(ErrorMessage = "Please enter the due date"), NotBeforeTodayValidator("The due date must be after today"), DisplayFormat(DataFormatString ="{0:dd-MM-yyyy}" , ApplyFormatInEditMode=true)]
+        public DateTime DueDate { get; set; }
         
     }
 

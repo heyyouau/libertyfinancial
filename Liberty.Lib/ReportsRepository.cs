@@ -1,4 +1,5 @@
-﻿using Liberty.Data.Interfaces;
+﻿using Liberty.Data;
+using Liberty.Data.Interfaces;
 using Liberty.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -16,9 +17,9 @@ namespace Liberty.Lib
             _dataContext = dataContext;
         }
 
-        public List<Data.MemberCurrentBookBorrowing> GetOverDueBooks(int daysOverDue)
+        public List<MemberCurrentBookBorrowingsWithName> GetOverDueBooks(int daysOverDue)
         {
-            return _dataContext.CurrentBookBorrowings.Where(e => e.DueDate < DateTime.Today.AddDays(-daysOverDue)).ToList();
+            return _dataContext.GetMemberBorrowings.Where(e => e.DueDate < DateTime.Today.AddDays(-daysOverDue)).ToList();
         }
     }
 }

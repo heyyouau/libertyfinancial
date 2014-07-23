@@ -23,10 +23,6 @@ namespace Liberty.Lib
             var pubs = new List<Publication>();
             if (searchParams.AuthorId != 0)
                 pubs = _dataContext.GetPublicationsByAuthorId(searchParams.AuthorId).ToList();
-            else if (searchParams.GenreId.Count > 0)
-            {
-                pubs = _dataContext.GetPublicationsByGenre(searchParams.GenreId).ToList();
-            }
             else if (!string.IsNullOrWhiteSpace(searchParams.AuthorLastName))
             {
                 pubs = _dataContext.GetPublicationsByAuthor(searchParams.AuthorLastName).ToList();
@@ -75,10 +71,7 @@ namespace Liberty.Lib
             return _dataContext.GetPublicationsByAuthorId(authorId).ToList();
         }
 
-        public List<Genre> GetGenres()
-        {
-            return _dataContext.GetGenres().ToList();
-        }
+        
 
         public List<Author> GetAuthors()
         {

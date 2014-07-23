@@ -36,16 +36,6 @@
                     @Html.EditorFor(e => e.ISBN)
                 </div>
             </div>
-            <div id="genres" class="row" >
-                <label class="col-lg-2">Genres</label>
-                <div class="col-lg-10">
-                    <div id="genreList">@Html.EditorFor(e => e.GenrePublications)</div>
-                    <div id="genreAdditions" class="author" ondrop="dropGenre(event)" ondragover="allowDrop(event)" ondragleave="handleDragLeave(event)">
-                        Drop Genre Here
-                    </div>
-                    @Ajax.ActionLink("Show Genres", "_getGenreSelector", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "elementSelector", OnSuccess = "presetDeletorVis('genreSelectors')" })
-                </div>
-            </div>
             <div class="row">
                 <label class="col-lg-2">Synopsis</label>
                 <div class="col-lg-10">

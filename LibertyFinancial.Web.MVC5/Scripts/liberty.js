@@ -1,4 +1,5 @@
-﻿function removeNestedForm(element, container, deleteElement)
+﻿
+function removeNestedForm(element, container, deleteElement)
 {
     $container = $('#' + container);
     $('#' + deleteElement).val('True');
@@ -149,3 +150,21 @@ function getPrefix(container) {
 function buildDomTargetId(type, modelId) {
     return '#' + type + '_' + modelId;
 }
+
+function today() {
+    var t = new Date();
+    var dd = t.getDate();
+    var mm = t.getMonth() + 1; //January is 0!
+    var yyyy = t.getFullYear();
+
+    if (dd < 10) {
+        dd = '0' + dd
+    }
+
+    if (mm < 10) {
+        mm = '0' + mm
+    }
+
+    return dd + '/' + mm + '/' + yyyy;
+}
+

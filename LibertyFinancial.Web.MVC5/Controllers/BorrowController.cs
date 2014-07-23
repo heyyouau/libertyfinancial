@@ -49,7 +49,8 @@ namespace LibertyFinancial.Web.MVC5.Controllers
             if (ModelState.IsValid)
             {
                 _borrowerRepository.BorrowBook(model);
-                return RedirectToAction("Index", new { memberId = model.Member.MemberId });
+                ViewBag.Message = "Book Borrow Confirmed";
+                return PartialView("Index", model);
             }
             else
             {

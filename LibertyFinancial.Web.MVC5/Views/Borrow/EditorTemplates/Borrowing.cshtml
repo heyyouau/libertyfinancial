@@ -1,15 +1,13 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.BorrowingModel
 
+<div class="alert-success">
+    @ViewBag.Message
+</div>
 
-
-@using (Html.BeginForm())
+@using (Ajax.BeginForm("ConfirmBorrow", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" }))
 {       
     @Html.AntiForgeryToken()
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Confirmation</h4>
-    </div>
-    <div class="modal-body">
+    <div class="row">
         @Html.ValidationSummary()
             <div class="row">
                 <label class="col-3-sm">Borrower</label>
@@ -27,12 +25,11 @@
         </div>
             <div class="row">
                 <label class="col-3-sm">Due Date</label>
-                @Html.TextBoxFor(e => e.DueDate, new { @class = "datepicker" })
+                @Html.TextBoxFor(e => e.DueDate, new  { @class = "datepicker", id="dueDateSelector"})
                 @Html.ValidationMessageFor(e => e.DueDate)
             </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <div>
         <button type="submit" class="btn btn-primary">Borrow</button>
     </div>
     @Html.HiddenFor(e => e.Member.MemberId)
@@ -41,6 +38,6 @@
 
 <script type="text/javascript">
     $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
+        $('#dueDateSelector').datepicker({ format: 'dd/mm/yyyy', 'startDate': today() }); //Initialise any date pickers
     });
 </script>
