@@ -187,6 +187,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\PublicationsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Extensions\HtmlHelpers.cs" />
     <Compile Include="Extensions\NoCache.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,7 +198,6 @@
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\SelectableAuthor.cs" />
-    <Compile Include="Models\SelectableGenre.cs" />
     <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
     <Compile Include="Models\PublicationSearchParameters.cs" />
@@ -207,14 +207,14 @@
   <ItemGroup>
     <Content Include="App_Data\Liberty.Data.Store.mdf" />
     <Content Include="App_Data\Liberty.Data.Store_log.ldf" />
+    <Content Include="Content\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\datepicker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap-datepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -252,13 +252,9 @@
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Publications\DisplayTemplates\AuthorPublication.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\GenrePublication.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\Synopsis.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\AuthorSelector.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\SelectableAuthor.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\GenreSelector.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\SelectableGenre.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\GenrePublication.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\AuthorPublication.cshtml" />
     <Content Include="Views\Members\EditorTemplates\Member.cshtml" />
     <Content Include="Views\Members\DisplayTemplates\Members.cshtml" />
@@ -267,10 +263,12 @@
     <Content Include="Views\Shared\BookSearch.cshtml" />
     <Content Include="Views\Borrow\DisplayTemplates\Publications.cshtml" />
     <Content Include="Views\Borrow\DisplayTemplates\AuthorPublication.cshtml" />
-    <Content Include="Views\Borrow\DisplayTemplates\GenrePublication.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Borrowing.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Member.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Publication.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\DisplayTemplates\MemberCurrentBookBorrowingsWithName.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

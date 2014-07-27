@@ -16,14 +16,21 @@ namespace Liberty.Data.Validators
             ErrorMessage = validationMessage;
         }
 
-        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
-        {
-            var x = value;
-            return base.IsValid(value, validationContext);
-        }
+        //protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        //{
+        //    var testObject = (Borrowing)validationContext.ObjectInstance;
+            
+        //    var result = new ValidationResult(ErrorMessage);
+
+        //    if (IsValid(testObject.DueDate))
+                
+        //    //return base.IsValid(value, validationContext);
+        //}
         public override bool IsValid(object value)
         {
-            return (DateTime)value < DateTime.Today;
+            if (value == null)
+                return false;
+            return (DateTime)value > DateTime.Today;
         }
 
         public override string FormatErrorMessage(string name)

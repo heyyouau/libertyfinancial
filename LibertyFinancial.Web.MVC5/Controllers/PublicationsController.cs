@@ -57,12 +57,6 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         }
 
 
-        public ActionResult _getGenreSelector()
-        {
-            var genreSelectorList = new List<SelectableGenre>();
-            _sessionHelper.Genres.ForEach(e => genreSelectorList.Add(new SelectableGenre(e)));
-            return PartialView("EditorTemplates/GenreSelector", genreSelectorList);
-        }
 
         [HttpGet]
         public ActionResult _editPublication(int id)

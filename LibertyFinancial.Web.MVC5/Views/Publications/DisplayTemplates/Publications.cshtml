@@ -36,9 +36,6 @@
             @Html.DisplayFor(modelItem => item.Synopsis)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GenrePublications)
-        </td>
-        <td>
             @Ajax.ActionLink("Edit", "_editPublication", new { id = item.BookId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" })
         </td>
     </tr>

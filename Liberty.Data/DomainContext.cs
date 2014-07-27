@@ -16,17 +16,10 @@ namespace Liberty.Data
         public DomainContext()
         {
             var options = new DataLoadOptions();
-            options.LoadWith<Publication>(e => e.GenrePublications);
             options.LoadWith<Publication>(e => e.AuthorPublications);
-
             options.LoadWith<AuthorPublication>(e => e.Author);
-            options.LoadWith<GenrePublication>(e => e.Genre);
-
             options.LoadWith<Member>(e => e.Borrowings);
-
-
             _dataContext.LoadOptions = options;
-
         }
 
         public void SaveChanges()
@@ -106,6 +99,7 @@ namespace Liberty.Data
             nm.FirstName = member.FirstName;
             nm.LastName = member.LastName;
             nm.ContactNumber = member.ContactNumber;
+            nm.MaxBorrowings = member.MaxBorrowings;
 
             return nm;
         }
@@ -125,16 +119,7 @@ namespace Liberty.Data
                     select p);
         }
 
-        public IQueryable<Publication> GetPublicationsByGenre(List<int> genres)
-        {
-            return (from p in _dataContext.Publications
-                    join ap in _dataContext.GenrePublications
-                        on p.BookId equals ap.PublicationId
-                    join a in _dataContext.Genres
-                        on ap.GenreId equals a.Id
-                    where genres.Contains(a.Id)
-                    select p);
-        }
+       
 
 
         public IQueryable<Publication> GetPublicationsByAuthorId(int authorId)
@@ -177,19 +162,6 @@ namespace Liberty.Data
             }
 
 
-            //delete any gp's marked for deletion
-            foreach (var ap in publication.GenrePublications.Where(e => e.Delete))
-            {
-                DeletePublicationGenre(ap.GenreId, ap.PublicationId);
-            }
-
-
-
-            //add any new gp's not yet in the data context
-            foreach (var ap in publication.GenrePublications.Where(e => !(pub.GenrePublications.Contains(e))))
-            {
-                AddGenrePublication(GetGenre(ap.GenreId), pub);
-            }
 
             pub.Title = publication.Title;
             pub.ISBN = publication.ISBN;
@@ -199,17 +171,7 @@ namespace Liberty.Data
             return pub;
         }
 
-        private void AddGenrePublication(Genre genre, Publication publication)
-        {
-            var gp = _dataContext.GenrePublications.FirstOrDefault(e => e.Genre == genre && e.Publication == publication);
-
-            if (gp == null)
-            {
-                gp = new GenrePublication() { Genre = genre, Publication = publication };
-                _dataContext.GenrePublications.InsertOnSubmit(gp);
-            }
-
-        }
+      
 
         private void AddAuthorPublication(Author author, Publication publication)
         {
@@ -228,19 +190,9 @@ namespace Liberty.Data
             return _dataContext.Publications;
         }
 
-        public IQueryable<Genre> GetGenres()
-        {
-            return _dataContext.Genres;
-        }
+      
 
-        public IQueryable<Genre> GetGenresByPublication(int publicationId)
-        {
-            return (from genre in _dataContext.Genres
-                    join gp in _dataContext.GenrePublications
-                        on genre.Id equals gp.GenreId
-                    where gp.PublicationId == publicationId
-                    select genre);
-        }
+     
 
         //public void DeletePublicationAuthor(AuthorPublication ap)
         //{
@@ -263,28 +215,7 @@ namespace Liberty.Data
                 _dataContext.AuthorPublications.InsertOnSubmit(new AuthorPublication() { AuthorId = authorid, PublicationId = publicationId });
         }
 
-        public void DeletePublicationGenre(int genreid, int publicationId)
-        {
-            var t = _dataContext.GenrePublications.FirstOrDefault(e => e.GenreId == genreid && e.PublicationId == publicationId);
-
-            if (t != null)
-                _dataContext.GenrePublications.DeleteOnSubmit(t);
-        }
-
-        public void SavePublicationGenre(int genreid, int publicationId)
-        {
-            var t = _dataContext.GenrePublications.FirstOrDefault(e => e.GenreId == genreid && e.PublicationId == publicationId);
-
-            if (t == null)
-                _dataContext.GenrePublications.InsertOnSubmit(new GenrePublication() { GenreId = genreid, PublicationId = publicationId});
-        }
-
-
-        public Genre GetGenre(int genreId)
-        {
-            return _dataContext.Genres.FirstOrDefault(e => e.Id == genreId);
-        }
-
+       
 
         public IQueryable<MemberCurrentBookBorrowing> CurrentBookBorrowings
         {
@@ -313,5 +244,15 @@ namespace Liberty.Data
                 return _dataContext.Borrowings;
             }
         }
+
+        public IQueryable<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings
+        {
+            get
+            {
+                return _dataContext.MemberCurrentBookBorrowingsWithNames;
+            }
+        }
+
+
     }
 }

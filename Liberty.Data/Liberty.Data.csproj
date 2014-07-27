@@ -71,7 +71,6 @@
     <Compile Include="AuthorPublication.cs" />
     <Compile Include="Borrowing.cs" />
     <Compile Include="DomainContext.cs" />
-    <Compile Include="GenrePublication.cs" />
     <Compile Include="Interfaces\IDataContext.cs" />
     <Compile Include="LibraryModel.designer.cs">
       <AutoGen>True</AutoGen>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Liberty.Data.Store" Class="LibraryModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=L:\dev.mckenziebryce\gitrepositories\libertyfinancial\LibertyFinancial.Web.MVC5\App_Data\Liberty.Data.Store.mdf;Integrated Security=True" SettingsObjectName="Liberty.Data.Properties.Settings" SettingsPropertyName="Liberty_Data_StoreConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(LocalDb)\v11.0;AttachDbFilename=C:\dev\git\Repos\libertyfinancial\LibertyFinancial.Web.MVC5\App_Data\Liberty.Data.Store.mdf;Integrated Security=True" SettingsObjectName="Liberty.Data.Properties.Settings" SettingsPropertyName="Liberty_Data_StoreConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Author" Member="Authors">
     <Type Name="Author">
       <Column Name="AuthorId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -28,21 +28,6 @@
       <Association Name="Member_Borrowing" Member="Borrowings" ThisKey="MemberId" OtherKey="MemberId" Type="Borrowing" />
     </Type>
   </Table>
-  <Table Name="dbo.GenrePublication" Member="GenrePublications">
-    <Type Name="GenrePublication">
-      <Column Name="GenreId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PublicationId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Genre_GenrePublication" Member="Genre" ThisKey="GenreId" OtherKey="Id" Type="Genre" IsForeignKey="true" />
-      <Association Name="Publication_GenrePublication" Member="Publication" ThisKey="PublicationId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Genre" Member="Genres">
-    <Type Name="Genre">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="GenreName" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
-      <Association Name="Genre_GenrePublication" Member="GenrePublications" ThisKey="Id" OtherKey="GenreId" Type="GenrePublication" />
-    </Type>
-  </Table>
   <Table Name="dbo.Publication" Member="Publications">
     <Type Name="Publication">
       <Column Name="BookId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -51,7 +36,6 @@
       <Column Name="Synopsis" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="Copies" Type="System.Int32" DbType="int" CanBeNull="false" />
       <Association Name="Publication_AuthorPublication" Member="AuthorPublications" ThisKey="BookId" OtherKey="PublicationId" Type="AuthorPublication" />
-      <Association Name="Publication_GenrePublication" Member="GenrePublications" ThisKey="BookId" OtherKey="PublicationId" Type="GenrePublication" />
       <Association Name="Publication_Borrowing" Member="Borrowings" ThisKey="BookId" OtherKey="BookId" Type="Borrowing" />
     </Type>
   </Table>
@@ -86,6 +70,16 @@
       <Column Name="Returned" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="Member_Borrowing" Member="Member" ThisKey="MemberId" OtherKey="MemberId" Type="Member" IsForeignKey="true" />
       <Association Name="Publication_Borrowing" Member="Publication" ThisKey="BookId" OtherKey="BookId" Type="Publication" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vewMemberCurrentBookBorrowingsWithName" Member="MemberCurrentBookBorrowingsWithNames">
+    <Type Name="MemberCurrentBookBorrowingsWithName">
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactNumber" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(1024) NOT NULL" CanBeNull="false" />
+      <Column Name="AuthorFullName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="DueDate" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

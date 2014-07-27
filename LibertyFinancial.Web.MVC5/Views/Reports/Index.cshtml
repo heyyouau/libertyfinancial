@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Liberty.Data.MemberCurrentBookBorrowingsWithName>
+
+<h3>Reports</h3>
+
+<div class="row">
+    <table class="table table-striped" >
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Due Date
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in Model) 
+            { 
+                @Html.DisplayFor(e => x);
+            }
+        </tbody>
+    </table>
+</div>
+

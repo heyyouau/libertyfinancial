@@ -36,23 +36,6 @@ namespace LibertyFinancial.Web.MVC5.Models
             }
         }
 
-        public List<Genre> Genres
-        {
-            get
-            {
-                List<Genre> genres;
-                if (HttpContext.Current.Session["Genres"] == null)
-                {
-                    genres = _publications.GetGenres().ToList();
-                    HttpContext.Current.Session["Genres"] = genres;
-                }
-                else
-                    genres = HttpContext.Current.Session["Genres"] as List<Genre>;
-                return genres;
-
-            }
-        }
-
        
     }
 }

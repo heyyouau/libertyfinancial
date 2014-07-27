@@ -15,10 +15,11 @@
             <div class="col-sm-2">
                 @if(Request.IsAuthenticated){
                 <ul class="nav nav-pills nav-stacked">
-                    <li class="active"><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
                     <li><a href="/Authors/Index"><span class="glyphicon glyphicon-chevron-right"></span>Authors</a></li>
                     <li><a href="/Members/Index" ><span class="glyphicon glyphicon-chevron-right"></span>Members</a></li>
                     <li><a href="/Publications/Index"><span class="glyphicon glyphicon-chevron-right"></span>Publications</a></li>
+                    <li><a href="/Reports/Index"><span class="glyphicon glyphicon-chevron-right"></span>Reports</a></li>
                 </ul>
                 }
             </div>
@@ -35,6 +36,14 @@
     @Scripts.Render("~/liberty")
     @RenderSection("PageScripts", required: false)
     
-   
+
+
+    <script type="text/javascript">
+        $('.nav > li').on('click', function (e) {
+            $('.nav > li').removeClass('active');
+            $(this).addClass('active');
+        });
+    </script>
+
 </body>
 </html>

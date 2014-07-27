@@ -1,6 +1,6 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.BorrowingModel
 
-<h2>Borrowing</h2>
+<h3>Book Lending</h3>
 
 <div class="row">
     <div class="row">
@@ -52,15 +52,14 @@
     {
     <h4>Select Book</h4>
 
-    using (Ajax.BeginForm("_ajaxPublicationSearch", new {memberId = Model.Member.MemberId}, new AjaxOptions { UpdateTargetId = "publicationList", InsertionMode = InsertionMode.Replace }))
-    {
-        Html.RenderPartial("BookSearch", new LibertyFinancial.Web.MVC5.Models.PublicationSearchParameters());
+        using (Ajax.BeginForm("_ajaxPublicationSearch", new { memberId = Model.Member.MemberId }, new AjaxOptions { UpdateTargetId = "publicationList", InsertionMode = InsertionMode.Replace }))
+        {
+            Html.RenderPartial("BookSearch", new LibertyFinancial.Web.MVC5.Models.PublicationSearchParameters());
+        }
     }
-
-    
-    
-    <div id="publicationList"></div>
-}
 </div>
 
+<div class="row">
+    <div id="publicationList"></div>
+</div>
 

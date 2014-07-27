@@ -1,45 +1,38 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.BorrowingModel
 
+<div class="alert-success">
+    @ViewBag.Message
+</div>
 
-
-@using (Html.BeginForm())
-{       
-    @Html.AntiForgeryToken()
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Confirmation</h4>
-    </div>
-    <div class="modal-body">
+<div class="row">
+    <div class="col-1-sm">
+    @using (Ajax.BeginForm("ConfirmBorrow", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" }))
+    {
+        @Html.AntiForgeryToken()
         @Html.ValidationSummary()
-            <div class="row">
-                <label class="col-3-sm">Borrower</label>
-                @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
-            </div>
-            <div class="row">
-                <label class="col-3-sm">Book</label>
-                @Html.DisplayFor(e => e.Publication.Title)
-            </div>
-        <div class="row">
-            <label class="col-3-sm">Author</label>
-            <span class="col-3-sm">
-                @Html.DisplayFor(e => e.Publication.AuthorPublications)
-            </span>
+        <div class="form-group">
+            <label class="col-3-sm">Borrower</label>
+            @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
         </div>
-            <div class="row">
-                <label class="col-3-sm">Due Date</label>
-                @Html.TextBoxFor(e => e.DueDate, new { @class = "datepicker" })
-            </div>
+        <div class="form-group">
+            <label class="col-3-sm">Book</label>
+            @Html.DisplayFor(e => e.Publication.Title)
+        </div>
+        <div class="form-group">
+            <label class="col-3-sm">Author</label>
+            @Html.DisplayFor(e => e.Publication.AuthorPublications)
+        </div>
+        <div class="form-group">
+            <label class="col-3-sm">Due Date</label>
+            @Html.EditorFor(e => e.DueDate)
+            @Html.ValidationMessageFor(e => e.DueDate)
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Borrow</button>
+        </div>
+        @Html.HiddenFor(e => e.Member.MemberId)
+        @Html.HiddenFor(e => e.Publication.BookId)
+    }
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Borrow</button>
-    </div>
-    @Html.HiddenFor(e => e.Member.MemberId)
-    @Html.HiddenFor(e => e.Publication.BookId)
-}
+</div>
 
-<script type="text/javascript">
-    $(function () { // will trigger when the document is ready
-        $('.datepicker').datepicker(); //Initialise any date pickers
-    });
-</script>

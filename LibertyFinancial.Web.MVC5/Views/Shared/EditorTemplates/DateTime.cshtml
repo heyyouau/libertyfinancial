@@ -1,0 +1,21 @@
+﻿@model System.DateTime?
+
+
+<div id="dt_@Html.IdFor(e => Model)" class="input-group date col-1-sm">
+    @Html.TextBox("", (Model.HasValue ? Model.Value.ToString("dd/MM/yyyy") : string.Empty), new { @class = "form-control", data_date_format = "DD/MM/YYYY" })
+    <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+    </span>
+</div>
+
+
+<script type="text/javascript">
+    $(function () 
+    { // will trigger when the document is ready
+        var container = '#dt_@Html.IdFor(m => Model)';
+        $(container).datetimepicker({defaultDate: "25/7/2014"}); //Initialise any date pickers
+    });
+</script>
+
+
+
