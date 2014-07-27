@@ -10,6 +10,7 @@ namespace Liberty.Data
     [MetadataType(typeof(AuthorMetadata))]
     public partial class Author
     {
+       
         public bool Delete { get; set; }
 
         public string AuthorFullName

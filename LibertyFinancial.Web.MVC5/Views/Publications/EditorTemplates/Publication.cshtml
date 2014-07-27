@@ -9,9 +9,11 @@
     };
 }
 
-
 <div class="row">
-    <div class="col-sm-10">
+    <h3 class="alert-success">@ViewBag.SuccessMessage</h3>
+</div>
+<div class="row">
+    <div class="col-sm-6">
         @using (Ajax.BeginForm("_ajaxSavePublication", options))
         {
             @Html.HiddenFor(e => e.BookId)
@@ -53,7 +55,7 @@
             </div>
         }
     </div>
-    <div id="elementSelector" class="col-sm-2">
+    <div id="elementSelector" class="col-sm-6">
 
     </div> <!--author selector--> 
 </div> <!-- outer row -->

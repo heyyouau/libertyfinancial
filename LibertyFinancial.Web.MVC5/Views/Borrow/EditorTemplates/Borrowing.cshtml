@@ -1,12 +1,9 @@
 ﻿@model LibertyFinancial.Web.MVC5.Models.BorrowingModel
 
-<div class="alert-success">
-    @ViewBag.Message
-</div>
+
 
 <div class="row">
-    <div class="col-1-sm">
-    @using (Ajax.BeginForm("ConfirmBorrow", new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" }))
+    @using (Ajax.BeginForm("ConfirmBorrow", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" }, new { @class = "col-1-lg" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
@@ -22,9 +19,9 @@
             <label class="col-3-sm">Author</label>
             @Html.DisplayFor(e => e.Publication.AuthorPublications)
         </div>
-        <div class="form-group">
-            <label class="col-3-sm">Due Date</label>
-            @Html.EditorFor(e => e.DueDate)
+    <div class="form-group input-group-sm data">
+            <label>Due Date</label>
+            @Html.TextBoxFor(e => e.DueDate, new { @class = "form-control datepicker" })
             @Html.ValidationMessageFor(e => e.DueDate)
         </div>
         <div>
@@ -33,6 +30,18 @@
         @Html.HiddenFor(e => e.Member.MemberId)
         @Html.HiddenFor(e => e.Publication.BookId)
     }
-    </div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        var selector = '#@Html.IdFor(e => e.DueDate)';
+        $(selector).datepicker({ format: 'dd/mm/yyyy' });
+        //check if no date set
+        if ($(selector).val() == '1/01/0001 12:00:00 AM') {
+            $(selector).datepicker('setValue', today());
+            //$(selector).val(today());
+        }
+    });
+</script>
+
 

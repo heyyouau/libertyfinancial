@@ -3,24 +3,32 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Login</h3>
+<div class="row">
 
-@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
 
-    
-    <fieldset>
-        <div class="row form-group">
-            <label class="col-6-sm">@Html.LabelFor(e => e.UserName)</label>
-            @Html.TextBoxFor(e => e.UserName)
-        </div>
-        <div class="row form-group">
-            <label class="col-6-sm">@Html.LabelFor(e => e.Password)</label>
-            @Html.TextBoxFor(e => e.Password)
-        </div>
-        <div class="row">
-            <button class="btn btn-Primary">Log In</button>
-        </div>
-    </fieldset>
-}
+
+        <fieldset>
+            <div class="row form-group">
+                <label class="col-6-sm">@Html.LabelFor(e => e.UserName)</label>
+                @Html.TextBoxFor(e => e.UserName)
+            </div>
+            <div class="row form-group">
+                <label class="col-6-sm">@Html.LabelFor(e => e.Password)</label>
+                @Html.TextBoxFor(e => e.Password)
+            </div>
+            <div class="row">
+                <button class="btn btn-Primary">Log In</button>
+            </div>
+        </fieldset>
+    }
+
+</div>
+
+<div class="row">
+    <p>User "John" for the username and "Wayne" for the password</p>
+</div>
+

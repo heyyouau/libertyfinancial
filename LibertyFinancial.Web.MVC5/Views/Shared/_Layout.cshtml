@@ -13,15 +13,16 @@
         </header>
         <div class="row">
             <div class="col-sm-2">
-                @if(Request.IsAuthenticated){
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
-                    <li><a href="/Authors/Index"><span class="glyphicon glyphicon-chevron-right"></span>Authors</a></li>
-                    <li><a href="/Members/Index" ><span class="glyphicon glyphicon-chevron-right"></span>Members</a></li>
-                    <li><a href="/Publications/Index"><span class="glyphicon glyphicon-chevron-right"></span>Publications</a></li>
-                    <li><a href="/Reports/Index"><span class="glyphicon glyphicon-chevron-right"></span>Reports</a></li>
-                </ul>
-                }
+                @if (Request.IsAuthenticated)
+{
+    <ul class="nav navbar nav-pills nav-stacked">
+        <li class="active" ><a href="/Home/Index"><span class="glyphicon glyphicon-chevron-right"></span> Home</a></li>
+        <li><a href="/Authors/Index"><span class="glyphicon glyphicon-chevron-right"></span>Authors</a></li>
+        <li><a href="/Members/Index"><span class="glyphicon glyphicon-chevron-right"></span>Members</a></li>
+        <li><a href="/Publications/Index"><span class="glyphicon glyphicon-chevron-right"></span>Publications</a></li>
+        <li> <a href="/Reports/Index"><span class="glyphicon glyphicon-chevron-right"></span>Reports</a></li>
+    </ul>
+}
             </div>
             <div class="col-sm-10 contentPanel">
                 @RenderBody()
@@ -39,10 +40,19 @@
 
 
     <script type="text/javascript">
-        $('.nav > li').on('click', function (e) {
+        $(function ()
+        {
             $('.nav > li').removeClass('active');
-            $(this).addClass('active');
+            var path = window.location.pathname;//.substr(0, window.location.pathname);
+            if (path != '/') {
+                $('.navbar').find('a[href^="' + path + '"]')[0].parent().addclass('active'); 
+            }
         });
+        //    );
+        //$('.nav > li').on('click', function (e) {
+        //    $('.nav > li').removeClass('active');
+        //    $(this).addClass('active');
+        //});
     </script>
 
 </body>

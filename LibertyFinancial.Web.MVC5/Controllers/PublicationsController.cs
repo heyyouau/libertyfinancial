@@ -45,8 +45,17 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpPost]
         public ActionResult _ajaxSavePublication(Publication publication)
         {
-           var pub =  _publicationRepository.SavePublication(publication);
-           return PartialView("EditorTemplates/Publication", pub);
+            if (ModelState.IsValid)
+            {
+                var pub = _publicationRepository.SavePublication(publication);
+                ViewBag.SuccessMessage = "Publication Saved";
+                return PartialView("EditorTemplates/Publication", pub);
+            }
+            else
+            {
+                ViewBag.SuccessMessage = "Publication Save Failed";
+                return PartialView("EditorTemplates/Publication", publication);
+            }
         }
 
         public ActionResult _getAuthorSelector()

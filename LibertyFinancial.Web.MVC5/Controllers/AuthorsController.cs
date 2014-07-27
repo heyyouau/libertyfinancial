@@ -52,10 +52,14 @@ namespace LibertyFinancial.Web.MVC5.Controllers
             if (ModelState.IsValid)
             {
                 var a = _authorsRepository.SaveAuthor(author);
-                return View("Index", new AuthorSearchParams() { AuthorFirstName = author.AuthorFirstName, AuthorLastName = author.AuthorLastName });
+                ViewBag.SuccessMessage = "Author Saved";
+                return View("EditorTemplates/Author", a);
             }
             else
-                return View("Index", new AuthorSearchParams());
+            {
+                ViewBag.SuccessMessage = "Author Save Failed";
+                return View("EditorTemplates/Author", author);
+            }
             
         }
 

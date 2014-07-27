@@ -33,7 +33,7 @@
         </td>
         <td>
             @Ajax.ActionLink("Edit", "_editMember", new { id = item.MemberId }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "memberList" })<br />
-            @Html.ActionLink("Borrow", "Index", "Borrow", new { memberId = item.MemberId }, null)
+            @Html.ActionLink("Borrow", "Index", "Borrow", new { id = item.MemberId }, null)
         </td>
     </tr>
 }

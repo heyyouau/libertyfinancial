@@ -268,7 +268,7 @@
     <Content Include="Views\Borrow\EditorTemplates\Publication.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\DisplayTemplates\MemberCurrentBookBorrowingsWithName.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\Result.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

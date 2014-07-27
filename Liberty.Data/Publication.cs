@@ -9,7 +9,7 @@ namespace Liberty.Data
     public partial class Publication
     {
         public BookBorrowingCount BookBorrowing { get; set; }
-
+       
 
 
         public bool AvailableForLoan

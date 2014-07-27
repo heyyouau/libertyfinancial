@@ -8,6 +8,8 @@ namespace Liberty.Data
 {
     public partial class AuthorPublication
     {
+
+
         public bool Delete { get; set; }
         public string AuthorFullName 
         { 

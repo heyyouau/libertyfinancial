@@ -25,9 +25,9 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         }
         //
         // GET: /Borrow/
-        public ActionResult Index(int memberId)
+        public ActionResult Index(int id)
         {
-            var m = _memberRepository.GetMember(memberId);
+            var m = _memberRepository.GetMember(id);
             var b = _borrowerRepository.GetCurrentBookBorrowings(m.MemberId);
             return View(new BorrowingModel(m, b));
         }
@@ -49,8 +49,9 @@ namespace LibertyFinancial.Web.MVC5.Controllers
             if (ModelState.IsValid)
             {
                 _borrowerRepository.BorrowBook(model);
-                ViewBag.Message = "Book Borrow Confirmed";
-                return PartialView("Index", model);
+                ViewBag.SuccessMessage = "Book Borrowing Recorded";
+                ViewBag.MemberId = model.Member.MemberId;
+                return PartialView("DisplayTemplates/Result");
             }
             else
             {
@@ -74,7 +75,7 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         public ActionResult Return(int borrowingId, int memberId)
         {
             _borrowerRepository.ReturnBook(borrowingId, DateTime.Now);
-            return RedirectToAction("Index", new { memberId = memberId });
+            return RedirectToAction("Index", new { id = memberId });
         }
 
 	}

@@ -3,6 +3,11 @@
 <h3>Book Lending</h3>
 
 <div class="row">
+    <div class="alert-success">
+        @ViewBag.SuccessMessage
+    </div>
+</div>
+<div class="row">
     <div class="row">
         <label class="col-3-sm">Borrower</label>
         @Html.DisplayFor(e => e.Member.LastName) , @Html.DisplayFor(e => e.Member.FirstName)
@@ -37,16 +42,14 @@
     }
     else
     {
-        <p class="alert">No Current books on loan</p>
+        <h3 class="alert-info">No Current books on loan</h3>
     }
 </div>
 
 <div class="row">
     @if (@Model.MemberCurrentBookBorrowing.Count >= @Model.Member.MaxBorrowings)
     {
-        <div class="row">
-            <h3 class="col-12-sm error">You must return some books before borrowing more</h3>
-        </div>
+        <h3 class="alert-warning">You must return some books before borrowing more</h3>
     }
     else
     {

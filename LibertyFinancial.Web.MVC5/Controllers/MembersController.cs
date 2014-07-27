@@ -40,8 +40,17 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         [HttpPost]
         public ActionResult _ajaxSaveMember(Member member)
         {
-            var m = _memberRepository.SaveMember(member);
-            return PartialView("EditorTemplates/Member", m);
+
+            if (ModelState.IsValid)
+            {
+                var m = _memberRepository.SaveMember(member);
+                ViewBag.SuccessMessage = "Member Saved";
+                return PartialView("EditorTemplates/Member", m);
+            }
+            else
+            {
+                return PartialView("EditorTemplates/Member", member);
+            }
         }
 
         [HttpGet]
