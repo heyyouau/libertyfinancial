@@ -9,15 +9,15 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize, NoCache]
+    [NoCache]
     public class BorrowController : BaseController
     {
         private IBorrowerRepository _borrowerRepository;
         private IMemberRepository _memberRepository;
         private IPublicationRepository _publicationRepository;
 
-        public BorrowController(IBorrowerRepository borrowerRepository, IMemberRepository memberRepository, IPublicationRepository publicationRepository, ISessionContext sessionContext, IDataContext dataContext)
-            : base(dataContext, sessionContext)
+        public BorrowController(IBorrowerRepository borrowerRepository, IMemberRepository memberRepository, IPublicationRepository publicationRepository, IDataContext dataContext)
+            : base(dataContext)
         {
             _borrowerRepository = borrowerRepository;
             _memberRepository = memberRepository;
@@ -48,10 +48,20 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         {
             if (ModelState.IsValid)
             {
-                _borrowerRepository.BorrowBook(model);
-                ViewBag.SuccessMessage = "Book Borrowing Recorded";
-                ViewBag.MemberId = model.Member.MemberId;
-                return PartialView("DisplayTemplates/Result");
+                try
+                {
+                    //should really do some checking here to validate the save operation
+                    _borrowerRepository.BorrowBook(model);
+                    ViewBag.SuccessMessage = "Book Borrowing Recorded";
+                    ViewBag.MemberId = model.Member.MemberId;
+                    return PartialView("DisplayTemplates/Result");
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.SuccessMessage = "There was a problem saving the record";
+                    //log the exception and tell someone
+                    return PartialView("EditorTemplates/Borrowing", model);
+                }
             }
             else
             {

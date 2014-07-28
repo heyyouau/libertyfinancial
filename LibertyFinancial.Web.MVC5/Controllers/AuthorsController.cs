@@ -10,14 +10,14 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize, NoCache]
+    [NoCache]
     public class AuthorsController : BaseController
     {
 
         private IAuthorsRepository _authorsRepository;
 
-        public AuthorsController(IAuthorsRepository authorsRepostory, IDataContext dataContext, ISessionContext context)
-            : base(dataContext, context)
+        public AuthorsController(IAuthorsRepository authorsRepostory, IDataContext dataContext)
+            : base(dataContext)
         {
             _authorsRepository = authorsRepostory;
         }
@@ -51,9 +51,19 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         {
             if (ModelState.IsValid)
             {
-                var a = _authorsRepository.SaveAuthor(author);
-                ViewBag.SuccessMessage = "Author Saved";
-                return View("EditorTemplates/Author", a);
+                try
+                {
+                    //should really do some checking here to validate the save operation
+                    var a = _authorsRepository.SaveAuthor(author);
+                    ViewBag.SuccessMessage = "Author Saved";
+                    return View("EditorTemplates/Author", a);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.SuccessMessage = "There was a problem saving the record";
+                    //log the exception somewhere and then tell someone who cares
+                    return View("EditorTemplates/Author", author);
+                }
             }
             else
             {

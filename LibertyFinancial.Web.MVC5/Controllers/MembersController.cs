@@ -10,13 +10,13 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize, NoCache]
+    [NoCache]
     public class MembersController : BaseController
     {
         private IMemberRepository _memberRepository;
         //
         // GET: /Members/
-        public MembersController(IMemberRepository membersRepository, ISessionContext sessionContext, IDataContext dataContext):base(dataContext, sessionContext)
+        public MembersController(IMemberRepository membersRepository, IDataContext dataContext):base(dataContext)
         {
             _memberRepository = membersRepository;
         }
@@ -43,9 +43,19 @@ namespace LibertyFinancial.Web.MVC5.Controllers
 
             if (ModelState.IsValid)
             {
-                var m = _memberRepository.SaveMember(member);
-                ViewBag.SuccessMessage = "Member Saved";
-                return PartialView("EditorTemplates/Member", m);
+                try
+                {
+                    //should be checking the result to validate the operation
+                    var m = _memberRepository.SaveMember(member);
+                    ViewBag.SuccessMessage = "Member Saved";
+                    return PartialView("EditorTemplates/Member", m);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.SuccessMessage = "There was a problem saving the record";
+                    //log the exception and tell someone
+                    return PartialView("EditorTemplates/Member", member);
+                }
             }
             else
             {

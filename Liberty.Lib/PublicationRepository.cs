@@ -18,6 +18,13 @@ namespace Liberty.Lib
         {
             _dataContext = dataContext;
         }
+
+
+        /// <summary>
+        /// return all publications or publications that match the search parameters
+        /// </summary>
+        /// <param name="searchParams">the parameters to execute the search on</param>
+        /// <returns>a matching list of publications</returns>
         public List<Publication> GetPublications(IPublicationSearchParams searchParams)
         {
             var pubs = new List<Publication>();
@@ -39,7 +46,11 @@ namespace Liberty.Lib
         }
 
        
-
+        /// <summary>
+        /// save the publication
+        /// </summary>
+        /// <param name="publication">The publication  to be saved</param>
+        /// <returns>the saved publication</returns>
         public Publication SavePublication(Publication publication)
         {
 
@@ -60,22 +71,27 @@ namespace Liberty.Lib
             
         }
 
-
+        /// <summary>
+        /// return the publication based on this key
+        /// </summary>
+        /// <param name="publicationId">the database id of the publication to be returned</param>
+        /// <returns>The matching publication</returns>
         public Publication GetPublication(int publicationId)
         {
             return _dataContext.GetPublication(publicationId);
         }
 
+
+        /// <summary>
+        /// find all publications with the suppied author id
+        /// </summary>
+        /// <param name="authorId">the database id of the author</param>
+        /// <returns>A list of publications for this author</returns>
         public List<Publication> GetPublicationsByAuthor(int authorId)
         {
             return _dataContext.GetPublicationsByAuthorId(authorId).ToList();
         }
 
         
-
-        public List<Author> GetAuthors()
-        {
-            return _dataContext.GetAuthors().ToList();
-        }
     }
 }

@@ -10,7 +10,6 @@ namespace LibertyFinancial.Web.MVC5.Controllers
 {
     public class BaseController : Controller
     {
-        protected ISessionContext _sessionContext;
         private IDataContext _dataContext;
 
 
@@ -21,9 +20,8 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         }
         
 
-        public BaseController(IDataContext dataContext, ISessionContext sessionContext)
+        public BaseController(IDataContext dataContext)
         {
-            _sessionContext = sessionContext;
             _dataContext = dataContext;
 
         }

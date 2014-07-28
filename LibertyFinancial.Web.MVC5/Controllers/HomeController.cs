@@ -8,14 +8,13 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize]
     public class HomeController : BaseController
     {
         //
         // GET: /Home/
 
-        public HomeController(IDataContext dataContext, ISessionContext context)
-            : base(dataContext, context)
+        public HomeController(IDataContext dataContext)
+            : base(dataContext)
         {
 
         }

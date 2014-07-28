@@ -15,31 +15,28 @@ namespace Liberty.Data
 
         public DomainContext()
         {
-            var options = new DataLoadOptions();
-            options.LoadWith<Publication>(e => e.AuthorPublications);
-            options.LoadWith<AuthorPublication>(e => e.Author);
-            options.LoadWith<Member>(e => e.Borrowings);
-            _dataContext.LoadOptions = options;
+           
         }
 
         public void SaveChanges()
         {
-            _dataContext.SubmitChanges();
+            //would normally save the changes here;
+            //_dataContext.SubmitChanges();
         }
 
-        public IQueryable<Author> GetAuthors()
+        public List<Author> GetAuthors()
         {
-            return _dataContext.Authors;
+            return _dataContext.Authors.ToList();
         }
 
 
-        public IQueryable<Author> GetAuthorsByPublication(int publicationId)
+        public List<Author> GetAuthorsByPublication(int publicationId)
         {
             return (from a in _dataContext.Authors
                     join ap in _dataContext.AuthorPublications
                         on a.AuthorId equals ap.AuthorId
                     where ap.PublicationId == publicationId
-                    select a);
+                    select a).ToList();
         }
 
 
@@ -48,9 +45,9 @@ namespace Liberty.Data
             return _dataContext.Authors.FirstOrDefault(e => e.AuthorId == authorId);
         }
 
-        public IQueryable<Author> SearchAuthors(string name)
+        public List<Author> SearchAuthors(string name)
         {
-            return _dataContext.Authors.Where(e => e.AuthorLastName.Contains(name));
+            return _dataContext.Authors.Where(e => e.AuthorLastName.Contains(name)).ToList();
         }
 
         public Author SaveAuthor(Author author)
@@ -63,7 +60,7 @@ namespace Liberty.Data
             if (upd == null)
             {
                 upd = new Author();
-                _dataContext.Authors.InsertOnSubmit(upd);
+                _dataContext.Authors.ToList().Add(upd);
             }
 
             upd.AuthorFirstName = author.AuthorFirstName;
@@ -75,9 +72,9 @@ namespace Liberty.Data
 
         #region Members
 
-        public IQueryable<Member> GetMembers()
+        public List<Member> GetMembers()
         {
-            return _dataContext.Members;
+            return _dataContext.Members.ToList();
         }
 
 
@@ -94,7 +91,7 @@ namespace Liberty.Data
             if (nm == null)
             {
                 nm = new Member();
-                _dataContext.Members.InsertOnSubmit(nm);
+                _dataContext.Members.ToList().Add(nm);
             }
             nm.FirstName = member.FirstName;
             nm.LastName = member.LastName;
@@ -108,7 +105,7 @@ namespace Liberty.Data
         #endregion
 
 
-        public IQueryable<Publication> GetPublicationsByAuthor(string authorName)
+        public List<Publication> GetPublicationsByAuthor(string authorName)
         {
             return (from p in _dataContext.Publications
                     join ap in _dataContext.AuthorPublications
@@ -116,13 +113,13 @@ namespace Liberty.Data
                     join a in _dataContext.Authors
                         on ap.AuthorId equals a.AuthorId
                     where a.AuthorLastName == authorName
-                    select p);
+                    select p).ToList();
         }
 
-       
 
 
-        public IQueryable<Publication> GetPublicationsByAuthorId(int authorId)
+
+        public List<Publication> GetPublicationsByAuthorId(int authorId)
         {
             return (from p in _dataContext.Publications
                     join ap in _dataContext.AuthorPublications
@@ -130,7 +127,7 @@ namespace Liberty.Data
                     join a in _dataContext.Authors
                         on ap.AuthorId equals a.AuthorId
                         where a.AuthorId == authorId
-                    select p);
+                    select p).ToList();
         }
 
         public Publication GetPublication(int publicationId)
@@ -146,7 +143,7 @@ namespace Liberty.Data
             if (pub == null)
             {
                 pub = new Publication();
-                _dataContext.Publications.InsertOnSubmit(pub);
+                _dataContext.Publications.ToList().Add(pub);
             }
 
             //delete ap's marked for deletion from the datacontext
@@ -179,15 +176,20 @@ namespace Liberty.Data
 
             if (ap == null)
             {
-                ap = new AuthorPublication() { Author = author, Publication = publication};
-                _dataContext.AuthorPublications.InsertOnSubmit(ap);
+                ap = new AuthorPublication(publication, author);
+                _dataContext.AuthorPublications.ToList().Add(ap);
             }
                 
         }
 
-        public IQueryable<Publication> GetPublications()
+        public List<Publication> GetPublications()
         {
-            return _dataContext.Publications;
+            var pubs = _dataContext.Publications;
+            foreach (var p in pubs)
+            {
+                p.AuthorPublications.AddRange(_dataContext.AuthorPublications.Where(e => e.PublicationId == p.BookId));
+            }
+            return _dataContext.Publications.ToList();
         }
 
       
@@ -204,7 +206,7 @@ namespace Liberty.Data
             var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
 
             if (t != null)
-                _dataContext.AuthorPublications.DeleteOnSubmit(t);
+                _dataContext.AuthorPublications.ToList().Remove(t);
         }
 
         public void SavePublicationAuthor(int authorid, int publicationId)
@@ -212,44 +214,74 @@ namespace Liberty.Data
             var t = _dataContext.AuthorPublications.FirstOrDefault(e => e.AuthorId == authorid && e.PublicationId == publicationId);
 
             if (t == null)
-                _dataContext.AuthorPublications.InsertOnSubmit(new AuthorPublication() { AuthorId = authorid, PublicationId = publicationId });
+                _dataContext.AuthorPublications.ToList().Add(new AuthorPublication() { GetAuthor(authorid),  GetPublication(publicationId) });
         }
 
-       
 
-        public IQueryable<MemberCurrentBookBorrowing> CurrentBookBorrowings
+
+        public List<MemberCurrentBookBorrowing> CurrentBookBorrowings
         {
             get
             {
-                return _dataContext.MemberCurrentBookBorrowings;
+                var results = new List<MemberCurrentBookBorrowing>();
+                foreach (var b in _dataContext.Borrowings)
+                {
+                    var p = GetPublication(b.BookId);
+                    var m = GetMember(b.MemberId);
+                    var authors = string.Empty;
+                    foreach(var a in p.AuthorPublications){
+                        authors += a.AuthorFullName + ", ";
+                    }
+                    results.Add(new MemberCurrentBookBorrowing() { AuthorFullName = authors, BookId = p.BookId, BorrowDate = b.BorrowDate, BorrowingId = b.BorrowingId, DueDate = b.DueDate, ISBN = p.ISBN, MemberId = b.MemberId, Title = p.Title });
+                }
+                return results;
             }
         }
-        public IQueryable<BookBorrowingCount> BookBorrowingCount
+        public List<BookBorrowingCount> BookBorrowingCount
         {
             get
             {
-                return _dataContext.BookBorrowingCounts;
+                var results = new List<BookBorrowingCount>();
+                foreach (var b in _dataContext.Borrowings)
+                {
+                    
+                }
+                return results;
             }
         }
 
         public void BorrowBook(int memberId, int publicationId, DateTime eventDate, DateTime dueDate)
         {
-            _dataContext.Borrowings.InsertOnSubmit(new Borrowing() { BookId = publicationId, BorrowDate = eventDate, DueDate = dueDate, MemberId = memberId, Returned = false });
+            _dataContext.Borrowings.ToList().Add(new Borrowing() { BookId = publicationId, BorrowDate = eventDate, DueDate = dueDate, MemberId = memberId, Returned = false });
         }
 
-        public IQueryable<Borrowing> GetBorrowings
+        public List<Borrowing> GetBorrowings
         {
             get
             {
-                return _dataContext.Borrowings;
+
+                return _dataContext.Borrowings.ToList();
             }
         }
 
-        public IQueryable<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings
+        public List<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings
         {
             get
             {
-                return _dataContext.MemberCurrentBookBorrowingsWithNames;
+                var l = new List<MemberCurrentBookBorrowingsWithName>();
+                foreach (var mcb in _dataContext.Borrowings)
+                {
+                    var p = GetPublication(mcb.BookId);
+                    var m = GetMember(mcb.MemberId);
+                    var authors = "";
+                    foreach (var a in p.AuthorPublications)
+                    {
+                        authors += a.AuthorFullName + ", ";
+                    }
+
+                    l.Add(new MemberCurrentBookBorrowingsWithName() { AuthorFullName = authors, ContactNumber = m.ContactNumber, DueDate = mcb.DueDate, FirstName = m.FirstName, LastName = m.LastName, Title = p.Title });
+                }
+                return l;
             }
         }
 

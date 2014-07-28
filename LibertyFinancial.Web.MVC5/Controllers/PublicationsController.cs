@@ -10,13 +10,13 @@ using System.Web.Mvc;
 
 namespace LibertyFinancial.Web.MVC5.Controllers
 {
-    [Authorize, NoCache]
+    [NoCache]
     public class PublicationsController : BaseController
     {
         private IPublicationRepository _publicationRepository;
         private IAuthorsRepository _authorsRepository;
         private SessionHelper _sessionHelper;
-        public PublicationsController(IPublicationRepository publicationRepository, IAuthorsRepository authorRepository, SessionHelper helper, IDataContext dataContext, ISessionContext sessionContext):base(dataContext, sessionContext)
+        public PublicationsController(IPublicationRepository publicationRepository, IAuthorsRepository authorRepository, SessionHelper helper, IDataContext dataContext):base(dataContext)
         {
             _publicationRepository = publicationRepository;
             _authorsRepository = authorRepository;
@@ -47,9 +47,19 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         {
             if (ModelState.IsValid)
             {
-                var pub = _publicationRepository.SavePublication(publication);
-                ViewBag.SuccessMessage = "Publication Saved";
-                return PartialView("EditorTemplates/Publication", pub);
+                try
+                {
+                    //should be checking the result to validate the operation
+                    var pub = _publicationRepository.SavePublication(publication);
+                    ViewBag.SuccessMessage = "Publication Saved";
+                    return PartialView("EditorTemplates/Publication", pub);
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.SuccessMessage = "There was a problem saving the record";
+                    //log the exception and tell someone
+                    return PartialView("EditorTemplates/Publication", publication);
+                }
             }
             else
             {

@@ -6,11 +6,26 @@ using System.Threading.Tasks;
 
 namespace Liberty.Data
 {
-    public partial class Publication
+    public class Publication
     {
         public BookBorrowingCount BookBorrowing { get; set; }
-       
 
+        public int BookId { get; set; }
+        public string Title { get; set; }
+        public string ISBN { get; set; }
+        public string Synopsis { get; set; }
+        public int Copies { get; set; }
+
+
+        private List<AuthorPublication> _authorPublications = new List<AuthorPublication>();
+
+        public List<AuthorPublication> AuthorPublications
+        {
+            get
+            {
+                return _authorPublications;
+            }
+        }
 
         public bool AvailableForLoan
         {

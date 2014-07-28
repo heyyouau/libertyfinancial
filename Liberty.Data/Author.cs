@@ -8,9 +8,26 @@ using System.Threading.Tasks;
 namespace Liberty.Data
 {
     [MetadataType(typeof(AuthorMetadata))]
-    public partial class Author
+    public class Author
     {
-       
+
+
+        public int AuthorId{ get; set; }
+
+        private string _authorFirstName;
+        public string AuthorFirstName 
+        { 
+            get {
+                return string.IsNullOrEmpty(_authorFirstName) ? string.Empty : AuthorFirstName;
+            }
+            set
+            {
+                _authorFirstName = value;
+            }
+        }
+        public string AuthorLastName { get; set; }
+        public string Notes { get; set; }
+
         public bool Delete { get; set; }
 
         public string AuthorFullName

@@ -12,8 +12,8 @@ namespace LibertyFinancial.Web.MVC5.Controllers
     {
         private IReportsRepository _reportsRepository;
 
-        public ReportsController(IDataContext context, ISessionContext sessionContext, IReportsRepository reportRepoitory)
-            : base(context, sessionContext)
+        public ReportsController(IDataContext context, IReportsRepository reportRepoitory)
+            : base(context)
         {
             _reportsRepository = reportRepoitory;
         }

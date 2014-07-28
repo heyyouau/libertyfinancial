@@ -11,7 +11,7 @@ namespace Liberty.Data.Interfaces
 
         void SaveChanges();
 
-        IQueryable<Author> GetAuthors();
+        List<Author> GetAuthors();
 
         Author GetAuthor(int authorId);
 
@@ -19,7 +19,7 @@ namespace Liberty.Data.Interfaces
 
         #region Members
 
-        IQueryable<Member> GetMembers();
+        List<Member> GetMembers();
 
 
         Member GetMember(int memberId);
@@ -37,22 +37,22 @@ namespace Liberty.Data.Interfaces
         Publication SavePublication(Publication publication);
 
         //get publications
-        IQueryable<Publication> GetPublications();
+        List<Publication> GetPublications();
 
         #endregion
 
-        IQueryable<Publication> GetPublicationsByAuthorId(int authorId);
-        IQueryable<Publication> GetPublicationsByAuthor(string authorName);
-        IQueryable<Author> GetAuthorsByPublication(int publicationId);
-        IQueryable<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings { get; }
+        List<Publication> GetPublicationsByAuthorId(int authorId);
+        List<Publication> GetPublicationsByAuthor(string authorName);
+        List<Author> GetAuthorsByPublication(int publicationId);
+        List<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings { get; }
         void DeletePublicationAuthor(int authorId, int publicationId);
         void SavePublicationAuthor(int p1, int p2);
 
         #region views
-        IQueryable<MemberCurrentBookBorrowing> CurrentBookBorrowings { get; }
-        IQueryable<BookBorrowingCount> BookBorrowingCount { get; }
+        List<MemberCurrentBookBorrowing> CurrentBookBorrowings { get; }
+        List<BookBorrowingCount> BookBorrowingCount { get; }
         void BorrowBook(int memberId, int publicationId, DateTime eventDate, DateTime dueDate);
-        IQueryable<Borrowing> GetBorrowings { get; }
+        List<Borrowing> GetBorrowings { get; }
         #endregion
     }
 }

@@ -18,16 +18,33 @@ namespace Liberty.Lib
             _datacontext = dataContext;
         }
 
+
+        /// <summary>
+        /// return a list of which books this member currently has unreturned
+        /// </summary>
+        /// <param name="memberId">the id of member who was borrowed the books</param>
+        /// <returns></returns>
         public List<MemberCurrentBookBorrowing> GetCurrentBookBorrowings(int memberId)
         {
             return _datacontext.CurrentBookBorrowings.Where(e => e.MemberId == memberId).ToList();
         }
 
+
+        /// <summary>
+        /// Borrow a single publication for a single member
+        /// </summary>
+        /// <param name="borrowingModel"></param>
         public void BorrowBook(IBorrowingModel borrowingModel)
         {
             _datacontext.BorrowBook(borrowingModel.Member.MemberId, borrowingModel.Publication.BookId, DateTime.Now, borrowingModel.DueDate);
         }
 
+
+        /// <summary>
+        /// mark this book as returned
+        /// </summary>
+        /// <param name="borrowingId">the database id of the borrowing event</param>
+        /// <param name="returndate">the date that the book has been returned</param>
         public void ReturnBook(int borrowingId, DateTime returndate)
         {
             var b = _datacontext.GetBorrowings.FirstOrDefault(e => e.BorrowingId == borrowingId);
@@ -40,6 +57,11 @@ namespace Liberty.Lib
 
         }
 
+        /// <summary>
+        /// return the list of books and how many copies they have available for borrowing
+        /// </summary>
+        /// <param name="publicationId">the id of the book to retrieve the report on</param>
+        /// <returns></returns>
         public BookBorrowingCount GetPublicationStatus(int publicationId)
         {
             return _datacontext.BookBorrowingCount.FirstOrDefault(e => e.BookId == publicationId);

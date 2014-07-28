@@ -13,6 +13,6 @@ namespace Liberty.Repository.Interface
         Publication GetPublication(int publicationId);
         Publication SavePublication(Publication publication);
         List<Publication> GetPublicationsByAuthor(int authorId);
-        List<Author> GetAuthors();
+        
     }
 }
