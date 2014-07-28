@@ -73,10 +73,7 @@ namespace LibertyFinancial.Web.MVC5.Controllers
         public ActionResult _ajaxPublicationSearch(PublicationSearchParameters searchParameters, int memberId)
         {
             var matches = _publicationRepository.GetPublications(searchParameters);
-            foreach (var m in matches)
-            {
-                m.BookBorrowing = _borrowerRepository.GetPublicationStatus(m.BookId);
-            }
+            
             ViewBag.MemberId = memberId;
             return PartialView("DisplayTemplates/Publications", matches);
         }

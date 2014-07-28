@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,14 @@ namespace Liberty.Data
     {
 
         public int MemberId { get; set; }
+        
+        [Required(ErrorMessage="Please enter the first name")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Please enter the last name")]
         public string LastName { get; set; }
+
+        [Required(ErrorMessage = "Please enter the member's maximum allowed borrowings")]
         public int MaxBorrowings { get; set; }
         public string ContactNumber { get; set; }
 

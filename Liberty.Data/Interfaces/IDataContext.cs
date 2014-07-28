@@ -41,16 +41,14 @@ namespace Liberty.Data.Interfaces
 
         #endregion
 
-        List<Publication> GetPublicationsByAuthorId(int authorId);
-        List<Publication> GetPublicationsByAuthor(string authorName);
-        List<Author> GetAuthorsByPublication(int publicationId);
+        
+        
+        
         List<MemberCurrentBookBorrowingsWithName> GetMemberBorrowings { get; }
-        void DeletePublicationAuthor(int authorId, int publicationId);
-        void SavePublicationAuthor(int p1, int p2);
+        List<Publication> GetPublicationsByAuthor(string authorLastName);
 
         #region views
         List<MemberCurrentBookBorrowing> CurrentBookBorrowings { get; }
-        List<BookBorrowingCount> BookBorrowingCount { get; }
         void BorrowBook(int memberId, int publicationId, DateTime eventDate, DateTime dueDate);
         List<Borrowing> GetBorrowings { get; }
         #endregion

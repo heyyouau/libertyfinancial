@@ -1,12 +1,13 @@
-﻿@model Liberty.Data.AuthorPublication
+﻿@model Liberty.Data.Author
 
 
 <div class="row author" id="aedit_@Model.AuthorId" data-modelid="@Model.AuthorId">
+    @Html.HiddenFor(e => e.AuthorFirstName)
+    @Html.HiddenFor(e => e.AuthorLastName)
     @Html.HiddenFor(e => e.AuthorId)
-    @Html.HiddenFor(e => e.PublicationId)
     <span class="col-sm-11">
         @Html.DisplayFor(e => e.AuthorFullName) 
         @Html.HiddenFor(e => e.Delete, new { id = "Authors_" + @Model.AuthorId + "_Delete" })
     </span>
-    <span class="col-sm-1 deletor">@Html.LinkToRemoveNestedForm("X", "aedit_" + Model.AuthorId, "AuthorPublications_" + @Model.AuthorId + "_Delete")</span>
+    <span class="col-sm-1 deletor">@Html.LinkToRemoveNestedForm("X", "aedit_" + Model.AuthorId, "Authors_" + @Model.AuthorId + "_Delete")</span>
 </div>

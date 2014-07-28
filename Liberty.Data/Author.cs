@@ -15,16 +15,20 @@ namespace Liberty.Data
         public int AuthorId{ get; set; }
 
         private string _authorFirstName;
+
+        [Required(ErrorMessage = "Please enter the first name")]
         public string AuthorFirstName 
         { 
             get {
-                return string.IsNullOrEmpty(_authorFirstName) ? string.Empty : AuthorFirstName;
+                return string.IsNullOrEmpty(_authorFirstName) ? string.Empty : _authorFirstName;
             }
             set
             {
                 _authorFirstName = value;
             }
         }
+
+        [Required(ErrorMessage = "Please enter the last name")]
         public string AuthorLastName { get; set; }
         public string Notes { get; set; }
 

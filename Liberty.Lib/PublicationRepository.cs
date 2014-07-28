@@ -28,9 +28,7 @@ namespace Liberty.Lib
         public List<Publication> GetPublications(IPublicationSearchParams searchParams)
         {
             var pubs = new List<Publication>();
-            if (searchParams.AuthorId != 0)
-                pubs = _dataContext.GetPublicationsByAuthorId(searchParams.AuthorId).ToList();
-            else if (!string.IsNullOrWhiteSpace(searchParams.AuthorLastName))
+            if (!string.IsNullOrWhiteSpace(searchParams.AuthorLastName))
             {
                 pubs = _dataContext.GetPublicationsByAuthor(searchParams.AuthorLastName).ToList();
             }
@@ -82,15 +80,15 @@ namespace Liberty.Lib
         }
 
 
-        /// <summary>
-        /// find all publications with the suppied author id
-        /// </summary>
-        /// <param name="authorId">the database id of the author</param>
-        /// <returns>A list of publications for this author</returns>
-        public List<Publication> GetPublicationsByAuthor(int authorId)
-        {
-            return _dataContext.GetPublicationsByAuthorId(authorId).ToList();
-        }
+        ///// <summary>
+        ///// find all publications with the suppied author id
+        ///// </summary>
+        ///// <param name="authorId">the database id of the author</param>
+        ///// <returns>A list of publications for this author</returns>
+        //public List<Publication> GetPublicationsByAuthor(int authorId)
+        //{
+        //    return _dataContext.GetPublicationsByAuthorId(authorId).ToList();
+        //}
 
         
     }

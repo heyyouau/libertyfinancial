@@ -57,14 +57,5 @@ namespace Liberty.Lib
 
         }
 
-        /// <summary>
-        /// return the list of books and how many copies they have available for borrowing
-        /// </summary>
-        /// <param name="publicationId">the id of the book to retrieve the report on</param>
-        /// <returns></returns>
-        public BookBorrowingCount GetPublicationStatus(int publicationId)
-        {
-            return _datacontext.BookBorrowingCount.FirstOrDefault(e => e.BookId == publicationId);
-        }
     }
 }

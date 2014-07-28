@@ -12,7 +12,7 @@ namespace Liberty.Repository.Interface
         List<Publication> GetPublications(IPublicationSearchParams searchParams);
         Publication GetPublication(int publicationId);
         Publication SavePublication(Publication publication);
-        List<Publication> GetPublicationsByAuthor(int authorId);
+        //List<Publication> GetPublicationsByAuthor(int authorId);
         
     }
 }

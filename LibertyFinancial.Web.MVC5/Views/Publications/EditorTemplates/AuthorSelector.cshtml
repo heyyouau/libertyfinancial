@@ -1,8 +1,11 @@
-﻿@model IEnumerable<LibertyFinancial.Web.MVC5.Models.SelectableAuthor>
+﻿@model IEnumerable<Liberty.Data.Author>
 @{
     ViewBag.Title = "SelectableAuthor";
 }
 
 <div id="authorSelectors">
-    @Html.EditorForModel()
+    @foreach (var a in Model)
+    {
+        Html.RenderPartial("SelectableAuthor", a);
+    }  
 </div>

@@ -29,13 +29,13 @@
             @Html.DisplayFor(modelItem => item.ISBN)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AuthorPublications)
+            @Html.DisplayFor(modelItem => item.AuthorNames)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Copies)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BookBorrowing.Available)
+            @Html.DisplayFor(modelItem => item.AvailableCopies)
         </td>
         <td>
             @if (item.AvailableForLoan) 

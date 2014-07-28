@@ -5,6 +5,7 @@
 <div class="row">
     @using (Ajax.BeginForm("ConfirmBorrow", null, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "publicationList" }, new { @class = "col-1-lg" }))
     {
+        
         @Html.AntiForgeryToken()
         @Html.ValidationSummary()
         <div class="form-group">
@@ -17,7 +18,7 @@
         </div>
         <div class="form-group">
             <label class="col-3-sm">Author</label>
-            @Html.DisplayFor(e => e.Publication.AuthorPublications)
+            @Html.DisplayFor(e => e.Publication.AuthorNames)
         </div>
     <div class="form-group input-group-sm data">
             <label>Due Date</label>
@@ -28,7 +29,11 @@
             <button type="submit" class="btn btn-primary">Borrow</button>
         </div>
         @Html.HiddenFor(e => e.Member.MemberId)
+        @Html.HiddenFor(e => e.Member.FirstName)
+        @Html.HiddenFor(e => e.Member.LastName)
+        @Html.HiddenFor(e => e.Member.ContactNumber)
         @Html.HiddenFor(e => e.Publication.BookId)
+        @Html.HiddenFor(e => e.Publication.Authors)
     }
 </div>
 
@@ -39,7 +44,6 @@
         //check if no date set
         if ($(selector).val() == '1/01/0001 12:00:00 AM') {
             $(selector).datepicker('setValue', today());
-            //$(selector).val(today());
         }
     });
 </script>

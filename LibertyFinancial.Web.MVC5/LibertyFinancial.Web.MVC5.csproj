@@ -159,7 +159,6 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\AuthorSearchParams.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\SelectableAuthor.cs" />
     <Compile Include="Models\SessionHelper.cs" />
     <Compile Include="Models\MemberSearchTerms.cs" />
     <Compile Include="Models\PublicationSearchParameters.cs" />
@@ -213,24 +212,24 @@
     <Content Include="Views\Publications\EditorTemplates\Publication.cshtml" />
     <Content Include="Views\Publications\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Publications\DisplayTemplates\AuthorPublication.cshtml" />
+    <Content Include="Views\Publications\DisplayTemplates\Author.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\Synopsis.cshtml" />
     <Content Include="Views\Publications\EditorTemplates\AuthorSelector.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\SelectableAuthor.cshtml" />
-    <Content Include="Views\Publications\EditorTemplates\AuthorPublication.cshtml" />
+    <Content Include="Views\Publications\SelectableAuthor.cshtml" />
+    <Content Include="Views\Publications\EditorTemplates\Author.cshtml" />
     <Content Include="Views\Members\EditorTemplates\Member.cshtml" />
     <Content Include="Views\Members\DisplayTemplates\Members.cshtml" />
     <Content Include="Views\Borrow\Index.cshtml" />
     <Content Include="Views\Borrow\DisplayTemplates\MemberCurrentBookBorrowing.cshtml" />
     <Content Include="Views\Shared\BookSearch.cshtml" />
     <Content Include="Views\Borrow\DisplayTemplates\Publications.cshtml" />
-    <Content Include="Views\Borrow\DisplayTemplates\AuthorPublication.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Borrowing.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Member.cshtml" />
     <Content Include="Views\Borrow\EditorTemplates\Publication.cshtml" />
     <Content Include="Views\Reports\Index.cshtml" />
     <Content Include="Views\Reports\DisplayTemplates\MemberCurrentBookBorrowingsWithName.cshtml" />
     <Content Include="Views\Borrow\DisplayTemplates\Result.cshtml" />
+    <Content Include="Views\Borrow\DisplayTemplates\Author.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

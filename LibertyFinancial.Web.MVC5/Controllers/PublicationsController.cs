@@ -70,9 +70,9 @@ namespace LibertyFinancial.Web.MVC5.Controllers
 
         public ActionResult _getAuthorSelector()
         {
-            var authorSelectorList = new List<SelectableAuthor>();
-            _sessionHelper.Authors.ForEach(e => authorSelectorList.Add(new SelectableAuthor(e)));
-            return PartialView("EditorTemplates/AuthorSelector", authorSelectorList);
+            //var authorSelectorList = new List<SelectableAuthor>();
+            //_sessionHelper.Authors.ForEach(e => authorSelectorList.Add((SelectableAuthor)e));
+            return PartialView("EditorTemplates/AuthorSelector", _sessionHelper.Authors);
         }
 
 

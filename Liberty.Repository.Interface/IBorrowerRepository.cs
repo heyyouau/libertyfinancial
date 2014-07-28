@@ -13,8 +13,6 @@ namespace Liberty.Repository.Interface
 
         void BorrowBook(IBorrowingModel borrowingModel);
 
-        BookBorrowingCount GetPublicationStatus(int publicationId);
-
         void ReturnBook(int borrowingId, DateTime dateTime);
     }
 }
